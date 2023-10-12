@@ -1,0 +1,25 @@
+
+[
+    {
+        "id": "1",
+        "name": "Sara Alvarado",
+        "image": "",
+        "pets": "65280da547b525b56a5c9cd4",
+        "email": "samsara.alvarado@gmail.com",
+        "birthday": "1991-11-14",
+        "password": "123456",
+        "phone": "636190003",
+        "address": "Avda Europa 122, 28341 Valdemoro"
+    },
+    {
+        "id": "2",
+        "name": "Laura Alvarado",
+        "image": "",
+        "pets": "65280da547b525b56a5c9cd5",
+        "email": "laura.alvarado@gmail.com",
+        "birthday": "1987-11-14",
+        "password": "123456",
+        "phone": "636190004",
+        "address": "Antonio Lopez 10, 28320 Pinto"
+    }
+]
