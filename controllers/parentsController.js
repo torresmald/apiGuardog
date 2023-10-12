@@ -1,5 +1,5 @@
 import Parents from '../models/Parent.model.js'
-import validateObjectId from '../utils/validate/validate.js';
+import {validateObjectId} from '../utils/validate/validate.js';
 
 
 const getParents = async (request, response, next) => {

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const validateObjectId = (id, response) => {
+export const validateObjectId = (id, response) => {
     if (!mongoose.Types.ObjectId.isValid(id)) {
         const error = new Error('El id no es válido')
         return response.status(400).json({
@@ -9,5 +9,8 @@ const validateObjectId = (id, response) => {
     }
 }
 
+export const  uniqueId = () => {
+    return Date.now().toString(32) + Math.random().toString(32).substring(2)
+}
 
-export default validateObjectId
+

@@ -1,6 +1,5 @@
 [
     {
-        "id": "1",
         "name": "Nami",
         "image": "",
         "birthday": "2018-11-09",
@@ -10,7 +9,6 @@
         "maxNumberGifts": 2
     },
     {
-        "id": "2",
         "name": "Lira",
         "image": "",
         "birthday": "2022-06-09",

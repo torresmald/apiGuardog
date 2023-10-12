@@ -5,6 +5,7 @@ import appointmentsRouter from './routes/appointmentsRoutes.routes.js';
 import petsRouter from './routes/petsRoutes.routes.js';
 import parentsRouter from './routes/parentsRoutes.routes.js';
 import { connect } from './utils/db/connect.js';
+import authRouter from './routes/authRoutes.routes.js';
 
 
 
@@ -27,6 +28,7 @@ app.get('/', (request, response) => {
 
 app.use('/pets', petsRouter)  
 app.use('/parents', parentsRouter)  
+app.use('/users', authRouter)  
 app.use('/appointments', appointmentsRouter)
 
 

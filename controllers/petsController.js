@@ -1,5 +1,5 @@
 import Pet from '../models/Pet.model.js'
-import validateObjectId from '../utils/validate/validate.js';
+import {validateObjectId} from '../utils/validate/validate.js';
 
 const getPets = async (request, response, next) => {
     try {
