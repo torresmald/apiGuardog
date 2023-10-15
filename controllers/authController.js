@@ -6,7 +6,7 @@ import { generateJWT } from "../utils/token/generateJWT.js";
 
 
 const registerUser = async (request, response, next) => {
-    const { name, email, password, phone } = request.body
+    const { name, email, password, phone, address, image } = request.body
     const MIN_LENGTH = 8
     if (Object.values(request.body).includes('')) {
         const error = new Error('Todos los campos son Obligatorios')
@@ -37,6 +37,9 @@ const registerUser = async (request, response, next) => {
             email,
             password: encryptedPassword,
             phone,
+            address,
+            pets,
+            image,
             token: uniqueId()
         })
 
@@ -131,7 +134,6 @@ const forgotPassword = async (request, response) => {
         console.log(error)
     }
 }
-
 
 const verifyPasswordResetToken = async (request, response) => {
     const { token } = request.params

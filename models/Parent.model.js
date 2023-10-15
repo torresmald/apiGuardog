@@ -16,8 +16,8 @@ const parentSchema = new mongoose.Schema({
     password: { type: String, required: true, trim: true},
     phone: {type: String, required: true},
     address: String,
-    isAdmin: Boolean,
-    verified: Boolean,
+    isAdmin: {type: Boolean, default: false},
+    verified: {type: Boolean, default: false},
     token: {
         type: String,
         default: () => uniqueId()
