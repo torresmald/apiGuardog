@@ -4,7 +4,6 @@ import dotenv from 'dotenv'
 import appointmentsRouter from './routes/appointmentsRoutes.routes.js';
 import petsRouter from './routes/petsRoutes.routes.js';
 import parentsRouter from './routes/parentsRoutes.routes.js';
-import authRouter from './routes/authRoutes.routes.js';
 import trainersRouter from './routes/trainersRoutes.routes.js'
 import { connect } from './utils/db/connect.js';
 import cors from 'cors'
@@ -31,7 +30,6 @@ app.get('/', (request, response) => {
 
 app.use('/pets', petsRouter)  
 app.use('/parents', parentsRouter)  
-app.use('/users', authRouter)  
 app.use('/appointments', appointmentsRouter)
 app.use('/trainers', trainersRouter)
 
