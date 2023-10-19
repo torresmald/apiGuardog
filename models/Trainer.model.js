@@ -13,6 +13,8 @@ const trainersSchema = new mongoose.Schema({
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'El email no tiene un formato válido']
     },
     phone: {type: String, required: true},
+    verified: {type: Boolean, default: false},
+
 },
 {
     timestamps: true

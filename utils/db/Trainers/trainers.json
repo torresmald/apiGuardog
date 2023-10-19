@@ -4,6 +4,7 @@
         "image": "",
         "experience": "1 year",
         "email": "pepe@pepe.com",
+        "password": "12345678",
         "phone": "666666666"
     },
     {
@@ -11,6 +12,7 @@
         "image": "",
         "experience": "4+ years",
         "email": "carmen@carmen.com",
+        "password": "12345678",
         "phone": "666666666"
     }
 ]

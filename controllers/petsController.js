@@ -29,7 +29,49 @@ const getPet = async (request, response, next) => {
 }
 
 
+const registerPet = async (request, response, next) => {
+    const { name, image, birthday, nutrition, diseases, exercice, maxNumberGifts } = request.body
+    if (Object.values(request.body).includes('')) {
+        const error = new Error('Todos los campos son Obligatorios')
+        return response.status(400).json({
+            msg: error.message
+        })
+    }
+    const existPet = await Pet.findOne({ name })
+    if (existPet) {
+        const error = new Error('Ya existe la mascota')
+        return response.status(400).json({
+            msg: error.message
+        })
+    }
+    try {
+        const newPet = new Pet({
+            name,
+            image,
+            birthday,
+            nutrition,
+            diseases,
+            exercice,
+            maxNumberGifts
+        })
+
+        // await sendEmailVerification({
+        //     name: newUser.name,
+        //     email: newUser.email,
+        //     token: newUser.token
+        // })
+        await newPet.save()
+        response.status(200).json({
+            msg: 'Mascota Creada correctamente'
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 export {
     getPets,
-    getPet
+    getPet,
+    registerPet
 }
