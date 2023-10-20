@@ -9,6 +9,15 @@ export const validateObjectId = (id, response) => {
     }
 }
 
+
+export const validateService = (message, response) => {
+    const error = new Error(message)
+    return response.status(404).json({
+        msg: error.message
+    })
+
+}
+
 export const  uniqueId = () => {
     return Date.now().toString(32) + Math.random().toString(32).substring(2)
 }

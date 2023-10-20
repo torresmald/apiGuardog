@@ -80,7 +80,8 @@ const registerParent = async (request, response, next) => {
         // })
         await newUser.save()
         response.status(200).json({
-            msg: 'Usuario Creado correctamente. Revisa tu email'
+            msg: 'Usuario Creado correctamente. Revisa tu email',
+            user: newUser
         })
     } catch (error) {
         console.log(error);
@@ -113,7 +114,7 @@ const loginParent = async (request, response) => {
     const token = generateJWT(existParent._id)
 
     response.status(200).json({
-        email,
+        user: existParent,        
         token,
         msg: 'Logueado correctamente'
     })

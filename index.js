@@ -5,6 +5,9 @@ import appointmentsRouter from './routes/appointmentsRoutes.routes.js';
 import petsRouter from './routes/petsRoutes.routes.js';
 import parentsRouter from './routes/parentsRoutes.routes.js';
 import trainersRouter from './routes/trainersRoutes.routes.js'
+import servicesRouter from './routes/servicesRoutes.routes.js';
+
+
 import { connect } from './utils/db/connect.js';
 import cors from 'cors'
 
@@ -32,6 +35,7 @@ app.use('/pets', petsRouter)
 app.use('/parents', parentsRouter)  
 app.use('/appointments', appointmentsRouter)
 app.use('/trainers', trainersRouter)
+app.use('/services', servicesRouter)
 
 
 

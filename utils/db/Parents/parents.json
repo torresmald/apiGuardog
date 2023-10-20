@@ -3,21 +3,21 @@
     {
         "name": "Sara Alvarado",
         "image": "",
-        "pets": "65281deffaf6f3b26a704fdc",
         "email": "samsara.alvarado@gmail.com",
         "birthday": "1991-11-14",
-        "password": "123456",
+        "password": "12345678",
         "phone": "636190003",
+        "verified": true,
         "address": "Avda Europa 122, 28341 Valdemoro"
     },
     {
         "name": "Laura Alvarado",
         "image": "",
-        "pets": "65281deffaf6f3b26a704fdd",
         "email": "laura.alvarado@gmail.com",
         "birthday": "1987-11-14",
-        "password": "123456",
+        "password": "12345678",
         "phone": "636190004",
+        "verified": true,
         "address": "Antonio Lopez 10, 28320 Pinto"
     }
 ]

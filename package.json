@@ -9,7 +9,8 @@
     "start-dev": "nodemon index.js",
     "seedPets": "node './utils/db/Pets/seedPets.js'",
     "seedParents": "node './utils/db/Parents/seedParents.js'",
-    "seedTrainers": "node './utils/db/Trainers/seedTrainers.js'"
+    "seedTrainers": "node './utils/db/Trainers/seedTrainers.js'",
+    "seedServices": "node './utils/db/Services/seedServices.js'"
   },
   "author": "",
   "license": "ISC",

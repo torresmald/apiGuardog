@@ -1,5 +1,5 @@
 const getAppointments = async (request, response) => {
-    console.log('Services');
+    console.log('Citas');
 }
 
 

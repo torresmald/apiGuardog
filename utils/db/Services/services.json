@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Paseo 30 minutos",
+        "price": 10
+    },
+    {
+        "name": "Paseo 60 minutos",
+        "price": 15
+    },
+    {
+        "name": "Cuidado 4 horas",
+        "price": 20
+    },
+    {
+        "name": "Cuidado 8 horas",
+        "price": 30
+    }
+]

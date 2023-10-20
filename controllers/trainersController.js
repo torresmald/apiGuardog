@@ -40,7 +40,7 @@ const loginTrainers = async (request, response) => {
     const token = generateJWT(existTrainer._id)
 
     response.status(200).json({
-        email,
+        user: existTrainer,
         token,
         msg: 'Logueado correctamente'
     })
