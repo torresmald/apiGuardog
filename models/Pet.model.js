@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const petsSchema = new mongoose.Schema({
-    name: { type: String },
+    name: { type: String, unique: true },
     image: String,
     birthday: String,
     parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Parent' },
@@ -9,7 +9,6 @@ const petsSchema = new mongoose.Schema({
     diseases: { type: [String || null] },
     exercice: {type:  String, enum:  ['30-60 min', '60-120 min', '+120min']},
     maxNumberGifts: Number
-
 },
 {
     timestamps: true
