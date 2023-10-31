@@ -37,6 +37,11 @@
         "type": "higiene"
     },
     {
+        "name": "Lavado Basico",
+        "price": 35,
+        "type": "higiene"
+    },
+    {
         "name": "Lavado Completo",
         "price": 40,
         "type": "higiene"
