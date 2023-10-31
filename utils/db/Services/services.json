@@ -1,18 +1,44 @@
 [
     {
         "name": "Paseo 30 minutos",
-        "price": 10
+        "price": 10,
+        "type": "paseo"
     },
     {
         "name": "Paseo 60 minutos",
-        "price": 15
+        "price": 15,
+        "type": "paseo"
+
     },
     {
         "name": "Cuidado 4 horas",
-        "price": 20
+        "price": 20,
+        "type": "cuidados"
+
     },
     {
         "name": "Cuidado 8 horas",
-        "price": 30
+        "price": 30,
+        "type": "cuidados"
+    },
+    {
+        "name": "Entrenamiento 1 hora",
+        "price": 40,
+        "type": "entrenamiento"
+    },
+    {
+        "name": "Entrenamiento 1 hora",
+        "price": 60,
+        "type": "entrenamiento"
+    },
+    {
+        "name": "Corte de Pelo",
+        "price": 30,
+        "type": "higiene"
+    },
+    {
+        "name": "Lavado Completo",
+        "price": 40,
+        "type": "higiene"
     }
 ]
