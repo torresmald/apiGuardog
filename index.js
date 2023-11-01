@@ -1,22 +1,12 @@
 import express from 'express'
 import dotenv from 'dotenv'
-
-import appointmentsRouter from './routes/appointmentsRoutes.routes.js';
-import petsRouter from './routes/petsRoutes.routes.js';
-import parentsRouter from './routes/parentsRoutes.routes.js';
-import trainersRouter from './routes/trainersRoutes.routes.js'
-import servicesRouter from './routes/servicesRoutes.routes.js';
-
-
+import apiRouter from './router/apiRoutes.routes.js';
 import { connect } from './utils/db/connect.js';
 import cors from 'cors'
-
-
 
 const PORT = process.env.PORT || 4000
 
 dotenv.config()
-
 
 const app = express();
 
@@ -26,17 +16,11 @@ connect()
 
 app.use(cors())
 
-app.get('/', (request, response) => {
-    response.status(200).json('Bienvenido a mi API Guardog.')
-  })
+app.use(apiRouter)
 
-
-app.use('/pets', petsRouter)  
-app.use('/parents', parentsRouter)  
-app.use('/appointments', appointmentsRouter)
-app.use('/trainers', trainersRouter)
-app.use('/services', servicesRouter)
-
+// app.use((error, request, response, next) => {
+//     return response.status(error.status || 500).json(error.message || 'Unexpected error');
+// });
 
 
 app.listen(PORT, () => {

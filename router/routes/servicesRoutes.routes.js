@@ -1,5 +1,5 @@
 import express from 'express'
-import { getServices, createServices, getService, updateService, deleteService } from '../controllers/servicesController.js'
+import { getServices, createServices, getService, updateService, deleteService } from '../../controllers/servicesController.js'
 
 const servicesRouter = express.Router()
 
