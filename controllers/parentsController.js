@@ -36,7 +36,7 @@ const registerParent = async (request, response, next) => {
     }
 }
 
-const loginParent = async (request, response) => {
+const loginParent = async (request, response, next) => {
     try {
         const user = await parentsService.loginParent(request.body)
         const token = generateJWT(user._id)
@@ -50,7 +50,7 @@ const loginParent = async (request, response) => {
 
 }
 
-const verifyAccount = async (request, response) => {
+const verifyAccount = async (request, response, next) => {
     try {
         const token = request.params.token;
         const message = await parentsService.verifyAccount(token)
@@ -61,7 +61,7 @@ const verifyAccount = async (request, response) => {
 
 }
 
-const forgotPassword = async (request, response) => {
+const forgotPassword = async (request, response, next) => {
     try {
         const message = await parentsService.forgotPasword(request.body)
         response.json(message)
@@ -70,7 +70,7 @@ const forgotPassword = async (request, response) => {
     }
 }
 
-const verifyPasswordResetToken = async (request, response) => {
+const verifyPasswordResetToken = async (request, response, next) => {
     try {
         const message = await parentsService.verifyPasswordResetToken(request.params)
 
@@ -81,7 +81,7 @@ const verifyPasswordResetToken = async (request, response) => {
     }
 }
 
-const updatePassword = async (request, response) => {
+const updatePassword = async (request, response, next) => {
     const { password } = request.body
     const { token } = request.params
 
