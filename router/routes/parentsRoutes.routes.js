@@ -1,5 +1,5 @@
 import express from 'express'
-import { getParent, getParents, registerParent, loginParent, verifyAccount, verifyPasswordResetToken, updatePassword, forgotPassword } from '../controllers/parentsController.js'
+import { getParent, getParents, registerParent, loginParent, verifyAccount, verifyPasswordResetToken, updatePassword, forgotPassword } from '../../controllers/parentsController.js'
 
 const parentsRouter = express.Router()
 

@@ -1,53 +1,37 @@
-import Trainer from '../models/Trainer.model.js'
-import { generateJWT } from '../utils/token/generateJWT.js';
+// import Trainer from '../models/Trainer.model.js'
+// import { generateJWT } from '../utils/token/generateJWT.js';
+import trainerService from "../services/trainers.services.js";
 
 
 const getTrainers = async (request, response, next) => {
     try {
-        const allTrainers = await Trainer.find()
-        if (allTrainers.length === 0) {
-            return response.status(200).json('No hay Entrenadores Disponibles');
-        }
-        return response.status(200).json(allTrainers)
+        const trainers = await trainerService.getTrainers()
+        response.status(200).json(trainers)
     } catch (error) {
         return next(error)
     }
 }
 
 const loginTrainers = async (request, response) => {
-    const { email, password } = request.body;
-
-    const existTrainer = await Trainer.findOne({ email })
-    if (!existTrainer) {
-        const error = new Error('El Usuario No existe, Registrate')
-        return response.status(400).json({
-            msg: error.message
-        })
+    try {
+        const user = await trainerService.loginTrainers(request.body)
+        response.status(200).json(user)
+    } catch (error) {
+        response.status(400).json({ message: error.message })
     }
-    if (!existTrainer.verified) {
-        const error = new Error('No has verificado tu cuenta, revisa tu email')
-        return response.status(400).json({
-            msg: error.message
-        })
+}
+
+const registerTrainers = async (request, response, next) => {
+    try {
+        const user = await trainerService.registerTrainers(request.body)
+        response.status(200).json(user)
+    } catch (error) {
+        response.status(400).json({ message: error.message })
     }
-
-    const isValidPassword = await bcrypt.compare(password, existTrainer.password);
-    if (!isValidPassword) {
-        const error = new Error('El password no es correcto')
-        return response.status(403).json({ msg: error.message })
-    }
-
-    const token = generateJWT(existTrainer._id)
-
-    response.status(200).json({
-        user: existTrainer,
-        token,
-        msg: 'Logueado correctamente'
-    })
-
 }
 
 export {
     getTrainers,
-    loginTrainers
+    loginTrainers,
+    registerTrainers
 }
