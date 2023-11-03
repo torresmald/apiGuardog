@@ -5,9 +5,12 @@ const servicesRouter = express.Router()
 
 servicesRouter.route('/')
     .get(getServices)
+
+servicesRouter.route('/register')
     .post(createServices)
-    
-    servicesRouter.route('/:id')
+
+
+servicesRouter.route('/:id')
     .get(getService)
     .put(updateService)
     .delete(deleteService)

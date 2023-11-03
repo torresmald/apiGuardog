@@ -40,7 +40,7 @@ class ServicesService {
             if (!service) {
                 throw new Error('No se encuentra el servicio')
             }
-            const modifiedService = new Service({ data });
+            const modifiedService = new Service({ ...data });
             modifiedService._id = id;
             const updatedService = await Service.findByIdAndUpdate(
                 id,
@@ -56,6 +56,7 @@ class ServicesService {
     async deleteService (id){
         try {
             const service = await Service.findByIdAndDelete(id)
+            console.log(service);
             if (!service) {
                 throw new Error('No se encuentra el servicio')
             }
