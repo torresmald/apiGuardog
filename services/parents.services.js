@@ -43,6 +43,12 @@ class ParentsService {
             if (password.length < MIN_LENGTH) {
                 throw new Error('El password es demasiado corto')
             }
+            if (!name) {
+                throw new Error('El nombre es obligatorio')
+            }
+            if (!phone) {
+              return  new Error('El telefono es obligatorio')
+            }
             const encryptedPassword = await bcrypt.hash(password.toString(), parseInt(10));
             if (!encryptedPassword) {
                 return next();
@@ -91,7 +97,8 @@ class ParentsService {
 
     async verifyAccount(data) {
         try {
-            const existParent = await Parent.findOne({ data })
+            const existParent = await Parent.findOne({ token: data })
+            console.log(existParent);
             if (!existParent) {
                 throw new Error('El token no es valido')
             }

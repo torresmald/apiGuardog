@@ -12,6 +12,16 @@ const getTrainers = async (request, response, next) => {
     }
 }
 
+const getTrainer = async (request, response, next) => {
+    try {
+        const id = request.params.id
+        const trainer = await trainerService.getTrainer(id)
+        response.status(200).json(trainer)
+    } catch (error) {
+        return next(error)
+    }
+}
+
 const loginTrainers = async (request, response) => {
     try {
         const user = await trainerService.loginTrainers(request.body)
@@ -32,6 +42,7 @@ const registerTrainers = async (request, response, next) => {
 
 export {
     getTrainers,
+    getTrainer,
     loginTrainers,
     registerTrainers
 }

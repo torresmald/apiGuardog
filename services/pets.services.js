@@ -30,9 +30,6 @@ class PetsService {
     async registerPet(data) {
         try {
             const { name, image, birthday, nutrition, diseases, exercice, maxNumberGifts, parent } = data
-            if (Object.values(data).includes('')) {
-                throw new Error('Todos los campos son Obligatorios')
-            }
             const existPet = await Pet.findOne({ name })
             if (existPet) {
                 throw new Error('Ya existe la mascota')

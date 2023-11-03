@@ -12,6 +12,15 @@ class TrainerService {
         }
     }
 
+    async getTrainer(id){
+        try {
+            const trainer = await Trainer.findById(id)
+            return trainer
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
     async loginTrainers({ email, password }) {
         try {
             const existTrainer = await Trainer.findOne({ email })
@@ -38,9 +47,6 @@ class TrainerService {
         try {
             const { name, image, experience, email, phone, password } = data
             const MIN_LENGTH = 8
-            if (Object.values(data).includes('')) {
-                throw new Error('Todos los campos son Obligatorios')
-            }
             const existTrainer = await Trainer.findOne({ email })
             if (existTrainer) {
                 throw new Error('El Usuario ya existe, Loguéate')

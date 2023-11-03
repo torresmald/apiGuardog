@@ -1,6 +1,7 @@
 import { validateObjectId } from '../utils/validate/validate.js';
 import { uniqueId } from "../utils/validate/validate.js";
 import parentsService from '../services/parents.services.js';
+import { generateJWT } from '../utils/token/generateJWT.js';
 
 
 const getParents = async (request, response, next) => {
