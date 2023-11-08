@@ -35,8 +35,7 @@ class TrainerService {
             if (!isValidPassword) {
                 throw new Error('El password no es correcto')
             }
-            const token = generateJWT(existTrainer._id)
-            return { token, existTrainer }
+            return { existTrainer }
 
         } catch (error) {
             throw new Error(error.message)

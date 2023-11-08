@@ -16,6 +16,10 @@ const trainersSchema = new mongoose.Schema({
     phone: {type: String, required: true},
     verified: {type: Boolean, default: false},
     isAdmin: {type: Boolean, default: false},
+    token: {
+        type: String,
+        default: () => uniqueId()
+    },
 },
 {
     timestamps: true

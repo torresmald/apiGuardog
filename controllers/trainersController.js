@@ -1,6 +1,7 @@
 // import Trainer from '../models/Trainer.model.js'
 // import { generateJWT } from '../utils/token/generateJWT.js';
 import trainerService from "../services/trainers.services.js";
+import { generateJWT } from "../utils/token/generateJWT.js";
 
 
 const getTrainers = async (request, response, next) => {
@@ -25,7 +26,11 @@ const getTrainer = async (request, response, next) => {
 const loginTrainers = async (request, response) => {
     try {
         const user = await trainerService.loginTrainers(request.body)
-        response.status(200).json(user)
+        const token = generateJWT(user._id)
+        response.status(200).json({
+            user,
+            token
+        })
     } catch (error) {
         response.status(400).json({ message: error.message })
     }
