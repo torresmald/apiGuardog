@@ -6,7 +6,7 @@ const getServices = async (request, response) => {
         const services = await servicesService.getServices()
         response.status(200).json(services)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 

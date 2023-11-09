@@ -2,6 +2,7 @@ import { validateObjectId } from '../utils/validate/validate.js';
 import { uniqueId } from "../utils/validate/validate.js";
 import parentsService from '../services/parents.services.js';
 import { generateJWT } from '../utils/token/generateJWT.js';
+import createError from '../utils/errors/createError.js';
 
 
 const getParents = async (request, response, next) => {
@@ -9,7 +10,7 @@ const getParents = async (request, response, next) => {
         const allParents = await parentsService.getParents()
         return response.status(200).json(allParents)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 
@@ -21,7 +22,7 @@ const getParent = async (request, response, next) => {
         const parent = await parentsService.getParent(id)
         return response.status(200).json(parent)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 
@@ -33,7 +34,7 @@ const registerParent = async (request, response, next) => {
         const parent = await parentsService.registerParent(request.body)
         response.status(200).json(parent)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 
@@ -46,7 +47,7 @@ const loginParent = async (request, response, next) => {
             token
         })
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 
 }
@@ -57,7 +58,7 @@ const verifyAccount = async (request, response, next) => {
         const message = await parentsService.verifyAccount(token)
         response.status(200).json(message)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 
 }
@@ -78,7 +79,7 @@ const verifyPasswordResetToken = async (request, response, next) => {
         response.status(200).json(message)
 
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 
@@ -92,7 +93,8 @@ const updatePassword = async (request, response, next) => {
 
         response.status(201).json(message)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
+
     }
 }
 

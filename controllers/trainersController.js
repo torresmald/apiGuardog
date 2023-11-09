@@ -9,7 +9,7 @@ const getTrainers = async (request, response, next) => {
         const trainers = await trainerService.getTrainers()
         response.status(200).json(trainers)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 
@@ -19,7 +19,7 @@ const getTrainer = async (request, response, next) => {
         const trainer = await trainerService.getTrainer(id)
         response.status(200).json(trainer)
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 
