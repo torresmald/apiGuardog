@@ -44,7 +44,9 @@ class TrainerService {
 
     async registerTrainers(data) {
         try {
-            const { name, image, experience, email, phone, password } = data
+            const { body, image } = data
+            const { name, experience, email, phone, password } = body
+            const imageUploaded = image ? image : null;
             const MIN_LENGTH = 8
             const existTrainer = await Trainer.findOne({ email })
             if (existTrainer) {
@@ -59,7 +61,7 @@ class TrainerService {
             }
             const newUser = new Trainer({
                 name,
-                image,
+                image: imageUploaded,
                 password: encryptedPassword,
                 experience,
                 email,

@@ -26,7 +26,11 @@ const getPet = async (request, response, next) => {
 
 const registerPet = async (request, response, next) => {
     try {
-        const newPet = await petsService.registerPet(request.body)
+        const data = {
+            body: request.body,
+            image: request.file
+        }
+        const newPet = await petsService.registerPet(data)
         response.status(200).json(newPet)
     } catch (error) {
         response.status(400).json({ message: error.message })

@@ -29,17 +29,18 @@ class PetsService {
 
     async registerPet(data) {
         try {
-            const { name, image, birthday, nutrition, diseases, exercice, maxNumberGifts, parent } = data
+            const { body, image } = data
+            const {name, parent, birthday, nutrition, diseases, exercice, maxNumberGifts} = body
+            const imageUploaded = image ? image : null;
             const existPet = await Pet.findOne({ name })
             if (existPet) {
                 throw new Error('Ya existe la mascota')
-
             }
             const parentPet = await Parent.findOne({ email: parent })
             const newPet = new Pet({
                 parent: parentPet,
                 name,
-                image,
+                image: imageUploaded,
                 birthday,
                 nutrition,
                 diseases,

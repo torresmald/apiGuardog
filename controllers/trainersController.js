@@ -1,5 +1,3 @@
-// import Trainer from '../models/Trainer.model.js'
-// import { generateJWT } from '../utils/token/generateJWT.js';
 import trainerService from "../services/trainers.services.js";
 import { generateJWT } from "../utils/token/generateJWT.js";
 
@@ -38,7 +36,11 @@ const loginTrainers = async (request, response) => {
 
 const registerTrainers = async (request, response, next) => {
     try {
-        const user = await trainerService.registerTrainers(request.body)
+        const data = {
+            body: request.body,
+            image: request.file
+        }
+        const user = await trainerService.registerTrainers(data)
         response.status(200).json(user)
     } catch (error) {
         response.status(400).json({ message: error.message })

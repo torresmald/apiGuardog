@@ -31,7 +31,9 @@ class ParentsService {
 
     async registerParent(data) {
         try {
-            const { name, email, password, phone, address, image } = data
+            const { body, image } = data
+            const { name, email, password, phone, address } = body
+            const imageUploaded = image ? image : null;
             const MIN_LENGTH = 8
             if (Object.values(data).includes('')) {
                 throw new Error('Todos los campos son Obligatorios')
@@ -59,7 +61,7 @@ class ParentsService {
                 password: encryptedPassword,
                 phone,
                 address,
-                image,
+                image: imageUploaded,
                 token: uniqueId()
             })
             await newUser.save()

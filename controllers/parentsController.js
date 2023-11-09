@@ -31,7 +31,11 @@ const getParent = async (request, response, next) => {
 
 const registerParent = async (request, response, next) => {
     try {
-        const parent = await parentsService.registerParent(request.body)
+        const data = {
+            body: request.body,
+            image: request.file
+        }
+        const parent = await parentsService.registerParent(data)
         response.status(200).json(parent)
     } catch (error) {
         response.status(400).json({ message: error.message })
