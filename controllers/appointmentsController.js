@@ -3,7 +3,7 @@ const getAppointments = async (request, response, next) => {
         response.status(200).json('Citas')
 
     } catch (error) {
-        return next(error)
+        response.status(400).json({ message: error.message })
     }
 }
 

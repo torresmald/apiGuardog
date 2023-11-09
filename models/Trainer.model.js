@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { uniqueId } from "../utils/validate/validate.js";
 
 const trainersSchema = new mongoose.Schema({
     name: { type: String, required: true },

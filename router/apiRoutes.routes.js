@@ -5,6 +5,7 @@ import parentsRouter from './routes/parentsRoutes.routes.js'
 import petsRouter from "./routes/petsRoutes.routes.js";
 import servicesRouter from "./routes/servicesRoutes.routes.js";
 import trainersRouter from './routes/trainersRoutes.routes.js'
+import createError from "../utils/errors/createError.js";
 
 const apiRouter = express.Router()
 
@@ -15,14 +16,16 @@ apiRouter.use('/services', servicesRouter)
 apiRouter.use('/trainers', trainersRouter)
 
 
-apiRouter.use('/', (request, response, next) => {
+apiRouter.get('/', (request, response, next) => {
     response.status(200).send('Bienvenido')
-    next(error);
 })
 apiRouter.use('*', (request, response, next) => {
-    response.status(404).send('La ruta no existe')
-    next(error);
+    next(createError('La ruta no existe', 404));
 })
+
+apiRouter.use((error, request, response, next) => {
+    return response.status(error.status || 500).json(error.message || 'Unexpected Error')
+  });
 
 
 export default apiRouter
