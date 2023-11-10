@@ -12,7 +12,7 @@ petsRouter.route('/:id')
     .get(getPet)
 
 petsRouter.route('/register')
-    .post(uploadFile.single('image'), uploadToCloud,  registerPet)
+    .post(uploadFile.single('image'), uploadToCloud, registerPet)
 
     
 export default petsRouter;
