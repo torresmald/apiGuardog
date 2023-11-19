@@ -1,8 +1,6 @@
 import { validateObjectId } from '../utils/validate/validate.js';
-import { uniqueId } from "../utils/validate/validate.js";
 import parentsService from '../services/parents.services.js';
 import { generateJWT } from '../utils/token/generateJWT.js';
-import createError from '../utils/errors/createError.js';
 
 
 const getParents = async (request, response, next) => {
@@ -79,9 +77,7 @@ const forgotPassword = async (request, response, next) => {
 const verifyPasswordResetToken = async (request, response, next) => {
     try {
         const message = await parentsService.verifyPasswordResetToken(request.params)
-
         response.status(200).json(message)
-
     } catch (error) {
         response.status(400).json({ message: error.message })
     }
@@ -90,15 +86,11 @@ const verifyPasswordResetToken = async (request, response, next) => {
 const updatePassword = async (request, response, next) => {
     const { password } = request.body
     const { token } = request.params
-
-
     try {
-        const message = await parentsService.updatePassword(password, token)
-
+        const message = await parentsService.updatePassword(token, password)
         response.status(201).json(message)
     } catch (error) {
         response.status(400).json({ message: error.message })
-
     }
 }
 

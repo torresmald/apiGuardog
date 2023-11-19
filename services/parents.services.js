@@ -1,7 +1,8 @@
 import Parent from "../models/Parent.model.js"
 import bcrypt from 'bcrypt';
 import { uniqueId } from "../utils/validate/validate.js";
-import { generateJWT } from "../utils/token/generateJWT.js";
+import { sendEmailForgotPassword, sendEmailVerification } from "../middlewares/email/authEmailService.js";
+import { sendGoogleEmail } from "../config/email/nodemailer.js";
 
 class ParentsService {
 
@@ -65,11 +66,11 @@ class ParentsService {
                 token: uniqueId()
             })
             await newUser.save()
-            // await sendEmailVerification({
-            //     name: newUser.name,
-            //     email: newUser.email,
-            //     token: newUser.token
-            // })
+            await sendEmailVerification({
+                name: newUser.name,
+                email: newUser.email,
+                token: newUser.token
+            })
             return newUser
         } catch (error) {
             throw new Error(error.message)
@@ -100,7 +101,6 @@ class ParentsService {
     async verifyAccount(data) {
         try {
             const existParent = await Parent.findOne({ token: data })
-            console.log(existParent);
             if (!existParent) {
                 throw new Error('El token no es valido')
             }
@@ -128,6 +128,8 @@ class ParentsService {
             //     email: result.email,
             //     token: result.token
             // })
+            await sendGoogleEmail(result.name, result.email, result.token).then(result => console.log(result)).catch(error => console.log(error))
+
             const message = 'Hemos enviado un email con las instrucciones'
             return message
         } catch (error) {
@@ -149,7 +151,7 @@ class ParentsService {
         }
     }
 
-    async updatePassword(password, token) {
+    async updatePassword(token, password) {
         try {
             const parent = await Parent.findOne({ token })
             if (!parent) {
