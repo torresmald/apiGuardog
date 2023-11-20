@@ -36,7 +36,8 @@ class PetsService {
             if (existPet) {
                 throw new Error('Ya existe la mascota')
             }
-            const parentPet = await Parent.findOne({ email: parent })
+            console.log(parent);
+            const parentPet = await Parent.findById(parent)
             const newPet = new Pet({
                 parent: parentPet,
                 name,
