@@ -1,8 +1,8 @@
 import Parent from "../models/Parent.model.js"
 import bcrypt from 'bcrypt';
 import { uniqueId } from "../utils/validate/validate.js";
-import { sendEmailForgotPassword, sendEmailVerification } from "../middlewares/email/authEmailService.js";
-// import { sendGoogleEmail } from "../config/email/nodemailer.js";
+// import { sendEmailForgotPassword, sendEmailVerification } from "../middlewares/email/authEmailService.js";
+import { sendGoogleEmail } from "../config/email/nodemailer.js";
 const frontURL = process.env.FRONT_URL
 class ParentsService {
 
@@ -65,12 +65,7 @@ class ParentsService {
                 image: imageUploaded,
                 token: uniqueId()
             })
-            await newUser.save()
-            await sendEmailVerification({
-                name: newUser.name,
-                email: newUser.email,
-                token: newUser.token
-            })
+            const result = await newUser.save()
 
             const mailOptions = {
                 from: 'Guardog Info <infoguardog@gmail.com>',
@@ -81,8 +76,9 @@ class ParentsService {
               '<a href="' + frontURL + '/confirm-account/' + result.token + '">Confirmar cuenta</a>' +
               '<p>Si no creaste esta cuenta, ignora el mensaje</p>'
             }
-            // await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
-            return newUser
+            await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            const message = 'Hemos enviado un email para confirmar la cuenta'
+            return message
         } catch (error) {
             throw new Error(error.message)
         }
@@ -134,12 +130,6 @@ class ParentsService {
             }
             parent.token = uniqueId()
             const result = await parent.save()
-            await sendEmailForgotPassword({
-                name: result.name,
-                email: result.email,
-                token: result.token
-            })
-
 
             const mailOptions = {
                 from: 'Guardog Info <infoguardog@gmail.com>',
@@ -150,7 +140,7 @@ class ParentsService {
               '<a href="' + frontURL + '/forgot-password/' + result.token + '">Reestablecer Contraseña</a>' +
               '<p>Si no lo solicitaste, ignora el mensaje</p>'
             }
-            // await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
 
             const message = 'Hemos enviado un email con las instrucciones'
             return message

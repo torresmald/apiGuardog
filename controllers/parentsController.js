@@ -33,8 +33,8 @@ const registerParent = async (request, response, next) => {
             body: request.body,
             image: request.file
         }
-        const parent = await parentsService.registerParent(data)
-        response.status(200).json(parent)
+        const message = await parentsService.registerParent(data)
+        response.status(200).json(message)
     } catch (error) {
         response.status(400).json({ message: error.message })
     }
@@ -68,7 +68,7 @@ const verifyAccount = async (request, response, next) => {
 const forgotPassword = async (request, response, next) => {
     try {
         const message = await parentsService.forgotPasword(request.body)
-        response.json(message)
+        response.status(200).json(message)
     } catch (error) {
         return next(error)
     }
