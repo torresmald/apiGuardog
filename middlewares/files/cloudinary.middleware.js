@@ -10,6 +10,7 @@ const uploadToCloud = async (request, response, next) => {
             request.file = image.secure_url;
             return next();
         }
+        return next()
     } catch (error) {
         return next(error)
     };
