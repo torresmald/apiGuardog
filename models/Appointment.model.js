@@ -1,15 +1,22 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const appointmentSchema = new mongoose.Schema({
-    date: { type: String, required: true, trim: true },
-    service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service' }],
-    parent: {type: mongoose.Schema.Types.ObjectId, ref: 'Parent'},
-    pet: {type: mongoose.Schema.Types.ObjectId, ref: 'Pet'},
+    services: [
+        {
+            name: { type: String, required: true },
+            price: { type: Number, required: true },
+            type: { type: String, required: true },
+            image: { type: String },
+            pet: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet' },
+            date: { type: Date, required: true },
+            petId: { type: String },  // Ajusta según tu modelo Pet
+        }
+    ],
+    parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Parent' },
 },
-    {
-        timestamps: true
-    })
-
+{
+    timestamps: true
+});
 
 const Appointment = mongoose.model('Appointment', appointmentSchema);
 

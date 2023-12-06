@@ -1,5 +1,5 @@
 import  express  from "express";
-import { getAppointment, getAppointments, getAppointmentsUser, registerAppointment } from "../../controllers/appointmentsController.js";
+import { getAppointmentByDay, getAppointments, getAppointmentsUser, registerAppointment } from "../../controllers/appointmentsController.js";
 
 const appointmentsRouter = express.Router()
 
@@ -7,8 +7,8 @@ const appointmentsRouter = express.Router()
 appointmentsRouter.route('/')
     .get(getAppointments)
     .post(registerAppointment)
-appointmentsRouter.route('/:id')
-    .get(getAppointment)
+appointmentsRouter.route('/date')
+    .get(getAppointmentByDay)
 appointmentsRouter.route('/user/:user')
     .get(getAppointmentsUser)
 
