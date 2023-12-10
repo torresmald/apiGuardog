@@ -26,41 +26,68 @@ class AppointmentsService {
         }
     }
 
+
     async getAppointmentByDay(date) {
-        try {
-            const newDate = parse(date, 'dd/MM/yyyy', new Date());
-            const isoDate = formatISO(newDate);
-            const appointments = await Appointment.find({
-                'services.date': {
-                    $gte: startOfDay(new Date(isoDate)),
-                    $lte: endOfDay(new Date(isoDate))
-                }
-            });    
-            return appointments;
-        } catch (error) {
-            throw new Error(error.message);
-        }
+      try {
+        const newDate = parse(date, 'dd/MM/yyyy', new Date());
+        const parsedDate = formatISO(newDate)
+        const appointments = await Appointment.find({
+          'services': {
+            $elemMatch: {
+              'date': {
+                $gte: startOfDay(new Date(parsedDate)),
+                $lt: endOfDay(new Date(parsedDate))
+              },
+            },
+          },
+        });    
+    const servicesWithDate = appointments.map(appointment => {
+        return appointment.services.find(service => {
+          const serviceDate = new Date(service.date);
+          return (
+            serviceDate >= startOfDay(new Date(parsedDate)) &&
+            serviceDate < endOfDay(new Date(parsedDate))
+          );
+        });
+      }).filter(Boolean);
+
+    return servicesWithDate;
+      } catch (error) {
+        throw new Error(error.message);
+      }
     }
+    
+      
+      
     
 
     async registerAppointment(data) {
         try {
-            const services = data.map(serviceData => serviceData.service);
+            const servicesData = data.map(serviceData => serviceData.services);
+            const totalAmount = data.reduce((total, appointment) =>   {
+                const servicePrice = appointment.services.price; 
+                return total + servicePrice
+            }
+            , 0)
             const newAppointment = new Appointment({
                 parent: data[0].parent, 
-                services: services.map((serv) => ({
-                    name: serv.name,
-                    price: serv.price,
-                    type: serv.type,
-                    image: serv.image,
-                    pet: serv.pet,
-                    date: serv.date,
-                    petId: serv.petId,
-                })),
+                services: servicesData.map((serv) => (
+                    {
+                        name: serv.name,
+                        price: serv.price,
+                        type: serv.type,
+                        image: serv.image,
+                        pet: serv.pet,
+                        date: serv.date,
+                        hour: serv.hour,
+                        petId: serv.petId,
+                    }
+                )),
+                amount: totalAmount
             });    
             const savedAppointment = await newAppointment.save();
     
-            return savedAppointment;
+            return newAppointment;
         } catch (error) {
             throw new Error(error.message);
         }
