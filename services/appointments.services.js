@@ -1,5 +1,5 @@
 import Appointment from "../models/Appointment.model.js"
-import {parse, formatISO, startOfDay, endOfDay} from 'date-fns'
+import {parse, formatISO, startOfDay, endOfDay, isValid} from 'date-fns'
 
 class AppointmentsService {
 
@@ -30,6 +30,9 @@ class AppointmentsService {
     async getAppointmentByDay(date) {
       try {
         const newDate = parse(date, 'dd/MM/yyyy', new Date());
+        if(!isValid(newDate)){
+          throw new Error('Fecha no Válida')
+        }
         const parsedDate = formatISO(newDate)
         const appointments = await Appointment.find({
           'services': {
