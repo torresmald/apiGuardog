@@ -1,11 +1,15 @@
 import PDFDocument from 'pdfkit';
 import fs from 'fs';
+import { uniqueId } from "../../utils/validate/validate.js";
 
-async function generatePDF(request, fileName) {
+
+async function generatePDF(request) {
     console.log(request.file);
+    console.log(request.body);
+    const namePDF = uniqueId()
     const doc = new PDFDocument();
 
-    doc.pipe(fs.createWriteStream(`./public/uploads/${request.file.originalname}.pdf`));
+    doc.pipe(fs.createWriteStream(`./public/uploads/${namePDF}.pdf`));
 
     doc
         .fontSize(27)

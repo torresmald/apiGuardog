@@ -1,7 +1,6 @@
 import Parent from "../models/Parent.model.js"
 import bcrypt from 'bcrypt';
 import { uniqueId } from "../utils/validate/validate.js";
-// import { sendEmailForgotPassword, sendEmailVerification } from "../middlewares/email/authEmailService.js";
 import { sendGoogleEmail } from "../config/email/nodemailer.js";
 const frontURL = process.env.FRONT_URL
 class ParentsService {
@@ -65,18 +64,18 @@ class ParentsService {
                 image: imageUploaded,
                 token: uniqueId()
             })
-            const result = await newUser.save()
+            //const result = await newUser.save()
 
-            const mailOptions = {
-                from: 'Guardog Info <infoguardog@gmail.com>',
-                to: email,
-                subject: 'Confirma tu cuenta',
-                html: '<p>Hola ' + result.name + ', confirma tu cuenta</p>' +
-              '<p>Tu cuenta está casi lista, confírmala en el siguiente enlace</p>' +
-              '<a href="' + frontURL + '/confirm-account/' + result.token + '">Confirmar cuenta</a>' +
-              '<p>Si no creaste esta cuenta, ignora el mensaje</p>'
-            }
-            await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            // const mailOptions = {
+            //     from: 'Guardog Info <infoguardog@gmail.com>',
+            //     to: email,
+            //     subject: 'Confirma tu cuenta',
+            //     html: '<p>Hola ' + result.name + ', confirma tu cuenta</p>' +
+            //   '<p>Tu cuenta está casi lista, confírmala en el siguiente enlace</p>' +
+            //   '<a href="' + frontURL + '/confirm-account/' + result.token + '">Confirmar cuenta</a>' +
+            //   '<p>Si no creaste esta cuenta, ignora el mensaje</p>'
+            // }
+            //await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
             const message = 'Hemos enviado un email para confirmar la cuenta'
             return message
         } catch (error) {

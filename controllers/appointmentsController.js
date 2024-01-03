@@ -9,6 +9,18 @@ const getAppointments = async (request, response, next) => {
     }
 }
 
+const getAppointment = async (request, response, next) => {
+    try {
+        const {id} = request.params
+        const appointment = await appointmentsService.getAppointment(id)
+        response.status(200).json(appointment)
+
+    } catch (error) {
+        response.status(400).json({ message: error.message })
+
+    }
+}
+
 const getAppointmentsUser = async (request, response, next) => {
     try {
         const {user} = request.params
@@ -39,10 +51,23 @@ const registerAppointment = async (request, response, next) => {
     }
 }
 
+const deleteAppointment = async (request, response, next) => {
+    try {
+        const {id} = request.params
+        const appointment = await appointmentsService.deleteAppointment(id)
+        response.status(200).json(appointment)
+    } catch (error) {
+        response.status(400).json({ message: error.message })
+
+    }
+}
+
 
 export {
     getAppointments,
     getAppointmentsUser,
     getAppointmentByDay,
-    registerAppointment
+    registerAppointment,
+    getAppointment,
+    deleteAppointment
 }
