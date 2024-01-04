@@ -1,7 +1,6 @@
 import Parent from "../models/Parent.model.js"
 import bcrypt from 'bcrypt';
 import { uniqueId } from "../utils/validate/validate.js";
-// import { sendEmailForgotPassword, sendEmailVerification } from "../middlewares/email/authEmailService.js";
 import { sendGoogleEmail } from "../config/email/nodemailer.js";
 const frontURL = process.env.FRONT_URL
 class ParentsService {
