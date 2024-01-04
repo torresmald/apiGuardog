@@ -2,7 +2,6 @@ import Appointment from "../models/Appointment.model.js"
 import { parse, formatISO, startOfDay, endOfDay, isValid } from 'date-fns'
 import { sendGoogleEmail } from "../config/email/nodemailer.js";
 import Parent from "../models/Parent.model.js";
-const frontURL = process.env.FRONT_URL
 
 class AppointmentsService {
 
@@ -29,11 +28,17 @@ class AppointmentsService {
   }
   async getAppointmentsUser(user) {
     try {
-      const allAppointmentsUser = await Appointment.find({ parent: user }).populate(['services', 'parent'])
-      if (allAppointmentsUser.length === 0) {
-        throw new Error('La colección no existe')
-      }
-      return allAppointmentsUser
+      const allAppointmentsParent = await Appointment.find({ parent: user }).populate(['services', 'parent'])
+      const allAppointmentsTrainer = await Appointment.find({ 
+        'services': {
+          $elemMatch: {
+            'trainer': user
+          }
+        }
+       })
+       .select('-totalPaidReal -totalPay -discounts') 
+       .populate(['services'])
+      return allAppointmentsParent.length > 0 ? allAppointmentsParent : allAppointmentsTrainer
     } catch (error) {
       throw new Error(error.message)
     }
@@ -131,7 +136,6 @@ class AppointmentsService {
   async deleteAppointment(id) {
     try {
       const appointment = await Appointment.findByIdAndDelete(id)
-      console.log(appointment);
       const parent = await Parent.findById(appointment.parent)
       const email = parent.email
       if (appointment) {

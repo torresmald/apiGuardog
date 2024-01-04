@@ -10,7 +10,8 @@ const appointmentSchema = new mongoose.Schema({
             pet: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet' },
             petId: { type: String }, 
             date: {type: Date, required: true},
-            hour: {type: String}
+            hour: {type: String},
+            trainer: { type: mongoose.Schema.Types.ObjectId, ref: 'Trainer' },
         }
     ],
     parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Parent' },
