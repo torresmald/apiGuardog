@@ -14,7 +14,9 @@ const appointmentSchema = new mongoose.Schema({
         }
     ],
     parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Parent' },
-    amount: Number
+    totalPaidReal: Number,
+    totalPay: Number,
+    discounts: Number
 },
 {
     timestamps: true

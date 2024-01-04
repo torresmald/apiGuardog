@@ -1,5 +1,8 @@
 import Appointment from "../models/Appointment.model.js"
 import { parse, formatISO, startOfDay, endOfDay, isValid } from 'date-fns'
+import { sendGoogleEmail } from "../config/email/nodemailer.js";
+import Parent from "../models/Parent.model.js";
+const frontURL = process.env.FRONT_URL
 
 class AppointmentsService {
 
@@ -70,10 +73,6 @@ class AppointmentsService {
     }
   }
 
-
-
-
-
   async registerAppointment(data) {
     try {
       const servicesData = data.map(serviceData => serviceData.services);
@@ -94,11 +93,34 @@ class AppointmentsService {
             date: serv.date,
             hour: serv.hour,
             petId: serv.petId,
+            trainer: serv.trainer
           }
         )),
-        amount: totalAmount
+        totalPaidReal: data[0].totalPaidReal,
+        totalPay: data[0].totalPay,
+        discounts: data[0].discounts
       });
       const savedAppointment = await newAppointment.save();
+      const parent = await Parent.findById(savedAppointment.parent)
+      const email = parent.email
+      const servicesHtml = savedAppointment.services.map(service => `
+          <div>
+            <p>Nombre del servicio: ${service.name}</p>
+            <p style="font-weight: bold">Precio: ${service.price} €</p>
+            <p>Tipo: ${service.type}</p>
+            <img style="width: 200px; heigth: 200px" src="${service.image}" alt="Imagen del servicio">
+            <p style="font-weight: bold">Fecha: ${service.date}</p>
+            <p style="font-weight: bold">Hora: ${service.hour}</p>
+          </div>
+      `).join('');
+      const mailOptions = {
+        from: 'Guardog Info <infoguardog@gmail.com>',
+        to: email,
+        subject: 'Confirmacion de Cita',
+        html: `<p>Hola ${parent.name}, aquí tienes los detalles de tu cita:</p>${servicesHtml}` +
+    '<p>Gracias por tu confianza</p>'
+    }
+    await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
 
       return newAppointment;
     } catch (error) {
@@ -109,8 +131,19 @@ class AppointmentsService {
   async deleteAppointment(id) {
     try {
       const appointment = await Appointment.findByIdAndDelete(id)
+      console.log(appointment);
+      const parent = await Parent.findById(appointment.parent)
+      const email = parent.email
       if (appointment) {
         const message = 'Eliminado con Éxito'
+        const mailOptions = {
+          from: 'Guardog Info <infoguardog@gmail.com>',
+          to: email,
+          subject: 'Cancelacion de Cita',
+          html: `<p>Hola ${parent.name}, tu cita :</p>${appointment._id} ha sido cancelada correctamente` +
+      '<p>Gracias por tu aviso</p>'
+      }
+      await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
         return message
       }
     } catch (error) {
