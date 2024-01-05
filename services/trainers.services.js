@@ -72,6 +72,22 @@ class TrainerService {
             throw new Error(error.message)
         }
     }
+
+    async editDataTrainer(id, data) {
+        try {
+            const updatedTrainer = await Trainer.findByIdAndUpdate(
+                id,
+                { $set: data },
+                { new: true }
+            );
+            if (updatedTrainer) {
+                const message = 'Datos actualizados'
+                return message
+            }
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
 }
 
 const trainerService = new TrainerService()

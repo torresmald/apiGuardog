@@ -47,9 +47,21 @@ const registerTrainers = async (request, response, next) => {
     }
 }
 
+const editDataTrainer = async (request, response, next) => {
+    const { id } = request.params
+    const data = request.body
+    try {
+        const message = await trainerService.editDataTrainer(id, data)
+        response.status(201).json(message)
+    } catch (error) {
+        response.status(400).json({ message: error.message })
+    }
+}
+
 export {
     getTrainers,
     getTrainer,
     loginTrainers,
-    registerTrainers
+    registerTrainers,
+    editDataTrainer
 }
