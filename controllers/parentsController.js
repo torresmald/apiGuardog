@@ -95,6 +95,17 @@ const updatePassword = async (request, response, next) => {
     }
 }
 
+const editDataParent = async (request, response, next) => {
+    const { id } = request.params
+    const data = request.body
+    try {
+        const message = await parentsService.editDataParent(id, data)
+        response.status(201).json(message)
+    } catch (error) {
+        response.status(400).json({ message: error.message })
+    }
+}
+  
 
 export {
     getParents,
@@ -104,5 +115,6 @@ export {
     verifyAccount,
     forgotPassword,
     verifyPasswordResetToken,
-    updatePassword
+    updatePassword,
+    editDataParent
 }

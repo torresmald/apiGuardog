@@ -49,7 +49,7 @@ class ParentsService {
                 throw new Error('El nombre es obligatorio')
             }
             if (!phone) {
-              return  new Error('El telefono es obligatorio')
+                return new Error('El telefono es obligatorio')
             }
             const encryptedPassword = await bcrypt.hash(password.toString(), parseInt(10));
             if (!encryptedPassword) {
@@ -71,9 +71,9 @@ class ParentsService {
                 to: email,
                 subject: 'Confirma tu cuenta',
                 html: '<p>Hola ' + result.name + ', confirma tu cuenta</p>' +
-              '<p>Tu cuenta está casi lista, confírmala en el siguiente enlace</p>' +
-              '<a href="' + frontURL + '/confirm-account/' + result.token + '">Confirmar cuenta</a>' +
-              '<p>Si no creaste esta cuenta, ignora el mensaje</p>'
+                    '<p>Tu cuenta está casi lista, confírmala en el siguiente enlace</p>' +
+                    '<a href="' + frontURL + '/confirm-account/' + result.token + '">Confirmar cuenta</a>' +
+                    '<p>Si no creaste esta cuenta, ignora el mensaje</p>'
             }
             await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
             const message = 'Hemos enviado un email para confirmar la cuenta'
@@ -91,7 +91,7 @@ class ParentsService {
                 throw new Error('El usuario no existe, registrate')
             }
             if (!existParent.verified) {
-                throw new Error('No has verificado tu cuenta')
+                throw new Error('No has verificado tu cuenta, revisa tu email')
             }
             const isValidPassword = await bcrypt.compare(password, existParent.password);
             if (!isValidPassword) {
@@ -135,9 +135,9 @@ class ParentsService {
                 to: email,
                 subject: 'Restablece tu Contraseña',
                 html: '<p>Hola ' + result.name + ', has solicitado reestablecer tu contraseña</p>' +
-              '<p>Sigue el siguiente enlace para reestablecerla</p>' +
-              '<a href="' + frontURL + '/forgot-password/' + result.token + '">Reestablecer Contraseña</a>' +
-              '<p>Si no lo solicitaste, ignora el mensaje</p>'
+                    '<p>Sigue el siguiente enlace para reestablecerla</p>' +
+                    '<a href="' + frontURL + '/forgot-password/' + result.token + '">Reestablecer Contraseña</a>' +
+                    '<p>Si no lo solicitaste, ignora el mensaje</p>'
             }
             await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
 
@@ -174,6 +174,22 @@ class ParentsService {
             await parent.save()
             const message = 'Password modificado'
             return message
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
+    async editDataParent(id, data) {
+        try {
+            const updatedParent = await Parent.findByIdAndUpdate(
+                id,
+                { $set: data },
+                { new: true }  
+            );
+            if (updatedParent) {
+                const message = 'Datos actualizados'
+                return message
+            }
         } catch (error) {
             throw new Error(error.message)
         }

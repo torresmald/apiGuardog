@@ -1,5 +1,5 @@
 import express from 'express'
-import { getParent, getParents, registerParent, loginParent, verifyAccount, verifyPasswordResetToken, updatePassword, forgotPassword } from '../../controllers/parentsController.js'
+import { getParent, getParents, registerParent, loginParent, verifyAccount, verifyPasswordResetToken, updatePassword, forgotPassword, editDataParent } from '../../controllers/parentsController.js'
 import uploadFile from '../../middlewares/files/files.middleware.js'
 import uploadToCloud from '../../middlewares/files/cloudinary.middleware.js'
 
@@ -10,6 +10,7 @@ parentsRouter.route('')
 
 parentsRouter.route('/:id')
     .get(getParent)
+    .put(editDataParent)
 
 parentsRouter.route('/register')
     .post(uploadFile.single('image'), uploadToCloud, registerParent)

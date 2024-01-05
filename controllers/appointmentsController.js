@@ -63,6 +63,7 @@ const deleteAppointment = async (request, response, next) => {
 }
 
 
+
 export {
     getAppointments,
     getAppointmentsUser,

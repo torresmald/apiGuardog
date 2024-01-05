@@ -1,5 +1,4 @@
 import Trainer from '../models/Trainer.model.js'
-import { generateJWT } from '../utils/token/generateJWT.js';
 import bcrypt from 'bcrypt'
 
 class TrainerService {
@@ -21,15 +20,15 @@ class TrainerService {
         }
     }
 
-    async loginTrainers({ email, password }) {
+    async loginTrainers(data) {
         try {
+            const { email, password } = data
             const existTrainer = await Trainer.findOne({ email })
             if (!existTrainer) {
                 throw new Error('El Usuario No existe, Registrate')
             }
             if (!existTrainer.verified) {
-                throw new Error('No has verificado tu cuenta, revisa tu email')
-
+                throw new Error('No has verificado tu cuenta, revisa tu email')   
             }
             const isValidPassword = await bcrypt.compare(password, existTrainer.password);
             if (!isValidPassword) {
@@ -69,6 +68,22 @@ class TrainerService {
             })
             await newUser.save()
             return newUser
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
+    async editDataTrainer(id, data) {
+        try {
+            const updatedTrainer = await Trainer.findByIdAndUpdate(
+                id,
+                { $set: data },
+                { new: true }
+            );
+            if (updatedTrainer) {
+                const message = 'Datos actualizados'
+                return message
+            }
         } catch (error) {
             throw new Error(error.message)
         }
