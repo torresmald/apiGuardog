@@ -67,7 +67,7 @@ class ParentsService {
             const result = await newUser.save()
 
             const mailOptions = {
-                from: 'Guardog Info <infoguardog@gmail.com>',
+                from: 'Guardog Info <onboarding@resend.dev>',
                 to: email,
                 subject: 'Confirma tu cuenta',
                 html: '<p>Hola ' + result.name + ', confirma tu cuenta</p>' +
