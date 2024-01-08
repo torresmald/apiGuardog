@@ -131,7 +131,7 @@ class ParentsService {
             const result = await parent.save()
 
             const mailOptions = {
-                from: 'Guardog Info <infoguardog@gmail.com>',
+                from: 'Guardog Info <onboarding@resend.dev>',
                 to: email,
                 subject: 'Restablece tu Contraseña',
                 html: '<p>Hola ' + result.name + ', has solicitado reestablecer tu contraseña</p>' +
@@ -139,7 +139,7 @@ class ParentsService {
                     '<a href="' + frontURL + '/forgot-password/' + result.token + '">Reestablecer Contraseña</a>' +
                     '<p>Si no lo solicitaste, ignora el mensaje</p>'
             }
-            await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            await sendResendEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
 
             const message = 'Hemos enviado un email con las instrucciones'
             return message
