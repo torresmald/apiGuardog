@@ -1,6 +1,6 @@
 import Appointment from "../models/Appointment.model.js"
 import { parse, formatISO, startOfDay, endOfDay, isValid } from 'date-fns'
-import { sendGoogleEmail } from "../config/email/nodemailer.js";
+import { sendResendEmail, sendGoogleEmail } from "../config/email/nodemailer.js";
 import Parent from "../models/Parent.model.js";
 
 class AppointmentsService {
