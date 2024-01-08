@@ -1,16 +1,18 @@
 import nodemailer from 'nodemailer'
 import {google} from 'googleapis'
 import dotenv from 'dotenv'
-export const createTransport = (host, port, user, pass) => {
-    return nodemailer.createTransport({
-        host,
-        port,
-        auth: {
-            user,
-            pass
-        }
-    });
-}
+import { Resend } from 'resend';
+
+// export const createTransport = (host, port, user, pass) => {
+//     return nodemailer.createTransport({
+//         host,
+//         port,
+//         auth: {
+//             user,
+//             pass
+//         }
+//     });
+// }
 dotenv.config()
 
 const REDIRECT_URL = process.env.REDIRECT_URL;
@@ -30,7 +32,7 @@ export async function sendGoogleEmail(mailOptions) {
             auth: {
                 type: 'OAuth2',
                 user: 'infoguardog@gmail.com',
-                clientId: OAUTH_CLIENTID,
+                clientId: OAUTH_CLIENT_ID,
                 clientSecret: OAUTH_CLIENT_SECRET,
                 refreshToken: OAUTH_REFRESH_TOKEN,
                 // accessToken: accessToken
@@ -42,4 +44,15 @@ export async function sendGoogleEmail(mailOptions) {
         return error
     }
 
+}
+
+const resend = new Resend(process.env.RESEND_API_KEY)
+
+export async function sendResendEmail(mailOptions) {
+    try {
+        const result = await resend.emails.send(mailOptions);
+        return result
+    } catch (error) {
+       return error
+    }
 }
