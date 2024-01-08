@@ -119,13 +119,13 @@ class AppointmentsService {
           </div>
       `).join('');
       const mailOptions = {
-        from: 'Guardog Info <infoguardog@gmail.com>',
+        from: 'Guardog Info <onboarding@resend.dev>',
         to: email,
         subject: 'Confirmacion de Cita',
         html: `<p>Hola ${parent.name}, aquí tienes los detalles de tu cita:</p>${servicesHtml}` +
     '<p>Gracias por tu confianza</p>'
     }
-    await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+    await sendResendEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
 
       return newAppointment;
     } catch (error) {
@@ -141,13 +141,13 @@ class AppointmentsService {
       if (appointment) {
         const message = 'Eliminado con Éxito'
         const mailOptions = {
-          from: 'Guardog Info <infoguardog@gmail.com>',
+          from: 'Guardog Info <onboarding@resend.dev>',
           to: email,
           subject: 'Cancelacion de Cita',
           html: `<p>Hola ${parent.name}, tu cita :</p>${appointment._id} ha sido cancelada correctamente` +
       '<p>Gracias por tu aviso</p>'
       }
-      await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+      await sendResendEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
         return message
       }
     } catch (error) {
