@@ -37,9 +37,20 @@ const registerPet = async (request, response, next) => {
     }
 }
 
+const deletePet = async (request, response, next) => {
+    try {
+        const id = request.params.id
+        if (validateObjectId(id, response)) return
+        const pet = await petsService.deletePet(id)
+        response.status(200).json(pet)
+    } catch (error) {
+        response.status(400).json({ message: error.message })
+    }
+}
 
 export {
     getPets,
     getPet,
-    registerPet
+    registerPet,
+    deletePet
 }
