@@ -75,7 +75,7 @@ class ParentsService {
                     '<a href="' + frontURL + '/confirm-account/' + result.token + '">Confirmar cuenta</a>' +
                     '<p>Si no creaste esta cuenta, ignora el mensaje</p>'
             }
-            await sendResendEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
             const message = 'Hemos enviado un email para confirmar la cuenta'
             return message
         } catch (error) {
@@ -139,7 +139,7 @@ class ParentsService {
                     '<a href="' + frontURL + '/forgot-password/' + result.token + '">Reestablecer Contraseña</a>' +
                     '<p>Si no lo solicitaste, ignora el mensaje</p>'
             }
-            await sendResendEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
 
             const message = 'Hemos enviado un email con las instrucciones'
             return message
