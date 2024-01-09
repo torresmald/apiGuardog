@@ -7,23 +7,23 @@ const VALID_FILES = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const fileFilter = (request, file, callback) => {
-    if (!VALID_FILES.includes(file.mimetype)) {
-        return callback(createError('El tipo de archivo no es aceptado', 403))
+const fileFilter = (request, file, cb) => {
+    if(!VALID_FILES.includes(file.mimetype)){
+        cb(createError('El tipo de archivo no es válido'))
     } else {
-        callback(null, true)
+        cb(null, true)
     }
-}
+};
 
 const storage = multer.diskStorage({
-    
-    filename: (request, file, callback) => {
-        callback(null, Date.now() + '-' + file.originalname)
+    filename: (request, file, cb) => {
+        cb(null, Date.now() + file.originalname )
     },
-    destination: (request, file, callback) => {
-        callback(null,  path.join(__dirname, '../../tmp'))
+    destination: (request, file, cb) => {
+        cb(null, '/tmp/')
     }
-})
+});
+
 
 const uploadFile = multer({storage, fileFilter})
 
