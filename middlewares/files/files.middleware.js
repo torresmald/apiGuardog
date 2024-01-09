@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
         callback(null, Date.now() + '-' + file.originalname)
     },
     destination: (request, file, callback) => {
-        callback(null,  path.join(__dirname, '../../public/uploads'))
+        callback(null,  path.join(__dirname, '../../tmp'))
     }
 })
 
