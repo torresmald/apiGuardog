@@ -16,17 +16,17 @@ import { Resend } from 'resend';
 dotenv.config()
 
 const REDIRECT_URL = process.env.REDIRECT_URL;
-const OAUTH_CLIENTID = process.env.OAUTH_CLIENTID
+const OAUTH_CLIENT_ID = process.env.OAUTH_CLIENT_ID
 const OAUTH_CLIENT_SECRET = process.env.OAUTH_CLIENT_SECRET
 const OAUTH_REFRESH_TOKEN = process.env.OAUTH_REFRESH_TOKEN
 
-const oAuth2Client = new google.auth.OAuth2(OAUTH_CLIENTID, OAUTH_CLIENT_SECRET, REDIRECT_URL)
+const oAuth2Client = new google.auth.OAuth2(OAUTH_CLIENT_ID, OAUTH_CLIENT_SECRET, REDIRECT_URL)
     
 oAuth2Client.setCredentials({refresh_token: OAUTH_REFRESH_TOKEN})
 
 export async function sendGoogleEmail(mailOptions) {
     try {
-        const accessToken = await oAuth2Client.getAccessToken()
+        //const accessToken = await oAuth2Client.getAccessToken()
         const transport = nodemailer.createTransport({
             service: 'gmail',
             auth: {
