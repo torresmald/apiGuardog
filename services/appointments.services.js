@@ -119,7 +119,7 @@ class AppointmentsService {
           </div>
       `).join('');
       const mailOptions = {
-        from: 'Guardog Info <onboarding@resend.dev>',
+        from: 'Guardog Info <infoguardog@gmail.com>',
         to: email,
         subject: 'Confirmacion de Cita',
         html: `<p>Hola ${parent.name}, aquí tienes los detalles de tu cita:</p>${servicesHtml}` +
@@ -141,7 +141,7 @@ class AppointmentsService {
       if (appointment) {
         const message = 'Eliminado con Éxito'
         const mailOptions = {
-          from: 'Guardog Info <onboarding@resend.dev>',
+          from: 'Guardog Info <infoguardog@gmail.com>',
           to: email,
           subject: 'Cancelacion de Cita',
           html: `<p>Hola ${parent.name}, tu cita :</p>${appointment._id} ha sido cancelada correctamente` +
