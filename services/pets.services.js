@@ -1,5 +1,6 @@
 import Pet from '../models/Pet.model.js'
 import Parent from '../models/Parent.model.js'
+import { sendGoogleEmail } from '../config/email/nodemailer.js'
 
 class PetsService {
 
@@ -49,12 +50,30 @@ class PetsService {
                 maxNumberGifts
             })
             await newPet.save()
-            // await sendEmailVerification({
-            //     name: newUser.name,
-            //     email: newUser.email,
-            //     token: newUser.token
-            // })
             return newPet
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+
+    async deletePet(id){
+        try {
+            const pet = await Pet.findByIdAndDelete(id)
+            console.log(pet);
+            const parent = await Parent.findById(pet.parent)
+            console.log(parent);
+            const email = parent.email
+            if (pet) {
+                const message = 'Eliminado con Éxito'
+                const mailOptions = {
+                  from: 'Guardog Info <infoguardog@gmail.com>',
+                  to: email,
+                  subject: 'Eliminacion de Mascota',
+                  html: `<p>Hola ${parent.name}, tu mascota :</p>${pet.name} ha sido eliminada correctamente` 
+              }
+              await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+                return message
+              }
         } catch (error) {
             throw new Error(error.message)
         }
