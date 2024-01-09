@@ -9,7 +9,7 @@ async function generatePDF(request) {
     const namePDF = uniqueId()
     const doc = new PDFDocument();
 
-    doc.pipe(fs.createWriteStream(`./public/uploads/${namePDF}.pdf`));
+    doc.pipe(fs.createWriteStream(`../../tmp/${namePDF}.pdf`));
 
     doc
         .fontSize(27)
@@ -17,7 +17,7 @@ async function generatePDF(request) {
     // doc
     //     .fontSize(50)
     //     .text(content.birthday, 100, 100);
-    doc.image(`./public/uploads/${request.file.filename}`, {
+    doc.image(`../../tmp/${request.file.filename}`, {
         fit: [300, 300],
         align: 'center',
         valign: 'center'
