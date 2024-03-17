@@ -4,8 +4,6 @@ import { uniqueId } from "../../utils/validate/validate.js";
 
 
 async function generatePDF(request) {
-    console.log(request.file);
-    console.log(request.body);
     const namePDF = uniqueId()
     const doc = new PDFDocument();
 
