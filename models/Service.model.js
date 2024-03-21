@@ -7,10 +7,9 @@ const servicesSchema = new mongoose.Schema({
     type: {type: String, required: true,  enum: ['paseo', 'cuidados', 'higiene', 'entrenamiento']},
     image: { type: String },
     pet: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet' },
-    date: { type: Date, required: true },
     petId: { type: String }, 
-    date: {type: Date, required: true},
     hour: {type: String},
+    link: {type: String},
     trainer: { type: mongoose.Schema.Types.ObjectId, ref: 'Trainer' },
 },
     {

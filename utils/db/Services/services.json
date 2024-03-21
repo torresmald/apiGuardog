@@ -2,48 +2,72 @@
     {
         "name": "Paseo 30 minutos",
         "price": 10,
-        "type": "paseo"
+        "type": "paseo",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image": "https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731043/Guardog/paseo-perros_jawv04.jpg"
     },
     {
         "name": "Paseo 60 minutos",
         "price": 15,
-        "type": "paseo"
+        "type": "paseo",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731081/Guardog/paseo-60_yjidhp.jpg"
 
     },
     {
         "name": "Cuidado 4 horas",
         "price": 20,
-        "type": "cuidados"
+        "type": "cuidados",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731187/Guardog/cuidado-4_kjqs8k.jpg"
 
     },
     {
         "name": "Cuidado 8 horas",
         "price": 30,
-        "type": "cuidados"
+        "type": "cuidados",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731255/Guardog/cuidado-8_nfuooz.png"
+
     },
     {
         "name": "Entrenamiento 1 hora",
         "price": 40,
-        "type": "entrenamiento"
+        "type": "entrenamiento",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731320/Guardog/entrenamiento-1_y4vtyg.jpg"
+
     },
     {
-        "name": "Entrenamiento 1 hora",
+        "name": "Entrenamiento 2 hora",
         "price": 60,
-        "type": "entrenamiento"
+        "type": "entrenamiento",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731368/Guardog/entrena-2_u5rgsq.jpg"
+
     },
     {
         "name": "Corte de Pelo",
         "price": 30,
-        "type": "higiene"
+        "type": "higiene",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731463/Guardog/corte-pelo_vqkrvz.jpg"
+
     },
     {
         "name": "Lavado Basico",
         "price": 35,
-        "type": "higiene"
+        "type": "higiene",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731462/Guardog/lavado_stlqww.jpg"
+
     },
     {
         "name": "Lavado Completo",
         "price": 40,
-        "type": "higiene"
+        "type": "higiene",
+        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731462/Guardog/completo_g9mflv.jpg"
+
     }
 ]
