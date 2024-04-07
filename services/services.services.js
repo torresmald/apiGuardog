@@ -56,7 +56,6 @@ class ServicesService {
     async deleteService (id){
         try {
             const service = await Service.findByIdAndDelete(id)
-            console.log(service);
             if (!service) {
                 throw new Error('No se encuentra el servicio')
             }
