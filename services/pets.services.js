@@ -37,7 +37,6 @@ class PetsService {
             if (existPet) {
                 throw new Error('Ya existe la mascota')
             }
-            console.log(parent);
             const parentPet = await Parent.findById(parent)
             const newPet = new Pet({
                 parent: parentPet,
@@ -59,7 +58,6 @@ class PetsService {
     async deletePet(id){
         try {
             const pet = await Pet.findByIdAndDelete(id)
-            console.log(pet);
             const parent = await Parent.findById(pet.parent)
             console.log(parent);
             const email = parent.email

@@ -22,6 +22,7 @@ const parentSchema = new mongoose.Schema({
         type: String,
         default: () => uniqueId()
     },
+    conditions: {type: Boolean, default: false},
 },
     {
         timestamps: true

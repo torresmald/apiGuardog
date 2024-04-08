@@ -32,7 +32,7 @@ class ParentsService {
     async registerParent(data) {
         try {
             const { body, image } = data
-            const { name, email, password, phone, address } = body
+            const { name, email, password, phone, address, conditions } = body
             const imageUploaded = image ? image : null;
             const MIN_LENGTH = 8
             if (Object.values(data).includes('')) {
@@ -49,7 +49,10 @@ class ParentsService {
                 throw new Error('El nombre es obligatorio')
             }
             if (!phone) {
-                return new Error('El telefono es obligatorio')
+                throw new Error('El telefono es obligatorio')
+            }
+            if (conditions == 'false') {
+                throw new Error('Debes Aceptar los términos y condiciones')
             }
             const encryptedPassword = await bcrypt.hash(password.toString(), parseInt(10));
             if (!encryptedPassword) {
@@ -62,7 +65,8 @@ class ParentsService {
                 phone,
                 address,
                 image: imageUploaded,
-                token: uniqueId()
+                token: uniqueId(),
+                conditions
             })
             const result = await newUser.save()
 
