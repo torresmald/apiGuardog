@@ -3,71 +3,80 @@
         "name": "Paseo 30 minutos",
         "price": 10,
         "type": "paseo",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image": "https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731043/Guardog/paseo-perros_jawv04.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image": "https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731043/Guardog/paseo-perros_jawv04.jpg",
+        "desc": "Nuestro servicio de guardería canina ofrece paseos revitalizantes de 30 minutos, asegurando que tu peludo amigo se mantenga activo y feliz."
     },
     {
         "name": "Paseo 60 minutos",
         "price": 15,
         "type": "paseo",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731081/Guardog/paseo-60_yjidhp.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731081/Guardog/paseo-60_yjidhp.jpg",
+        "desc": "¿Tu perro necesita más tiempo para explorar? En nuestra guardería canina, ofrecemos paseos rejuvenecedores de 60 minutos para mantenerlo feliz y saludable."
 
     },
     {
         "name": "Cuidado 4 horas",
         "price": 20,
         "type": "cuidados",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731187/Guardog/cuidado-4_kjqs8k.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731187/Guardog/cuidado-4_kjqs8k.jpg",
+        "desc": "Tu perro estará en buenas manos durante 4 horas en nuestra guardería canina, donde disfrutará de paseos, juegos y atención personalizada mientras tú te ocupas de tus responsabilidades."
 
     },
     {
         "name": "Cuidado 8 horas",
         "price": 30,
         "type": "cuidados",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731255/Guardog/cuidado-8_nfuooz.png"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731255/Guardog/cuidado-8_nfuooz.png",
+        "desc": "Nuestro compromiso en la guardería canina es brindar a tu perro 8 horas de cuidado excepcional, garantizando que se sienta feliz, cómodo y amado durante todo el día."
 
     },
     {
         "name": "Entrenamiento 1 hora",
         "price": 40,
         "type": "entrenamiento",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731320/Guardog/entrenamiento-1_y4vtyg.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731320/Guardog/entrenamiento-1_y4vtyg.jpg",
+        "desc": "Con nuestro servicio de guardería canina, tu perro recibirá una hora de entrenamiento personalizado, ayudándolo a desarrollar habilidades, mejorar comportamientos y fortalecer el vínculo contigo."
 
     },
     {
-        "name": "Entrenamiento 2 hora",
+        "name": "Entrenamiento 2 horas",
         "price": 60,
         "type": "entrenamiento",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731368/Guardog/entrena-2_u5rgsq.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731368/Guardog/entrena-2_u5rgsq.jpg",
+        "desc": "¿Listo para un cambio significativo en el comportamiento de tu perro? Nuestras sesiones de entrenamiento de dos horas en la guardería canina son la solución para lograr resultados duraderos."
 
     },
     {
         "name": "Corte de Pelo",
         "price": 30,
         "type": "higiene",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731463/Guardog/corte-pelo_vqkrvz.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731463/Guardog/corte-pelo_vqkrvz.jpg",
+        "desc": "¿Tu perro necesita un cambio de imagen? En nuestra guardería canina, ofrecemos servicios de corte de pelo profesional para mantener a tu amigo peludo luciendo su mejor versión."
 
     },
     {
         "name": "Lavado Basico",
         "price": 35,
         "type": "higiene",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731462/Guardog/lavado_stlqww.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731462/Guardog/lavado_stlqww.jpg",
+        "desc": "Nuestro servicio de guardería canina ofrece paseos revitalizantes de 30 minutos, asegurando que tu peludo amigo se mantenga activo y feliz."
 
     },
     {
         "name": "Lavado Completo",
         "price": 40,
         "type": "higiene",
-        "link": "https://www.youtube.com/embed/SLSPM4zlLqs",
-        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731462/Guardog/completo_g9mflv.jpg"
+        "link": "https://www.youtube.com/embed/OP7IdmB9Dlg?autoplay=1&loop=1&autopause=0&muted=1",
+        "image":"https://res.cloudinary.com/dpyvlsksj/image/upload/v1699731462/Guardog/completo_g9mflv.jpg",
+        "desc": "En nuestra guardería canina, ofrecemos un lavado básico que incluye champú suave y secado, manteniendo a tu perro limpio y cómodo sin complicaciones."
 
     }
 ]
