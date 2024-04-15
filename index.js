@@ -6,6 +6,11 @@ import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url';
 import {v2 as cloudinary} from 'cloudinary';
+import { createServer } from "http";
+import { Server } from "socket.io";
+
+
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +33,20 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'public')))
 
 connect()
+
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, { /* options */ });
+
+
+io.on('connection', (socket) => {
+  console.log('Nuevo usuario Conectado');
+
+  socket.on('sendMessage', (messageInfo) => {
+    console.log('Enviando un mensaje');
+    socket.broadcast.emit('receiveMessage', messageInfo);
+  })
+})
 
 app.use(cors())
 
