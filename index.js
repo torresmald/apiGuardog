@@ -1,59 +1,52 @@
-import express from 'express'
-import dotenv from 'dotenv'
+import express from 'express';
+import dotenv from 'dotenv';
 import apiRouter from './router/apiRoutes.routes.js';
 import { connect } from './utils/db/connect.js';
-import cors from 'cors'
-import path from 'path'
+import cors from 'cors';
+import path from 'path';
 import { fileURLToPath } from 'url';
-import {v2 as cloudinary} from 'cloudinary';
-import { createServer } from "http";
-import { Server } from "socket.io";
-
-
-
+import { v2 as cloudinary } from 'cloudinary';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 4000;
 
-          
-cloudinary.config({ 
-  cloud_name: process.env.CLOUDINARY_NAME, 
-  api_key: process.env.CLOUDINARY_KEY, 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET
 });
 
-dotenv.config()
+dotenv.config();
 
 const app = express();
+const server = createServer(app);
 
-app.use(express.json())
-
-app.use(express.static(path.join(__dirname, 'public')))
-
-connect()
-
-const httpServer = createServer(app);
-
-const io = new Server(httpServer, { /* options */ });
-
+const io = new Server(server, {
+  cors: {
+    origin: ["http://localhost:4200"],
+    
+}
+});
 
 io.on('connection', (socket) => {
-  console.log('Nuevo usuario Conectado');
-
   socket.on('sendMessage', (messageInfo) => {
-    console.log('Enviando un mensaje');
     socket.broadcast.emit('receiveMessage', messageInfo);
   })
-})
+});
 
-app.use(cors())
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors());
+app.use(apiRouter);
 
-app.use(apiRouter)
-  
-app.listen(PORT, () => {
-    console.log(`Servidor funcionando en http://localhost:${PORT}`);
-})
+connect();
 
-export default app
+server.listen(PORT, () => {
+  console.log(`Servidor funcionando en http://localhost:${PORT}`);
+});
+
+export default app;
