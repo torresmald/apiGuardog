@@ -26,10 +26,11 @@ const app = express();
 const server = createServer(app);
 
 const io = new Server(server, {
-  cors: {
-    origin: ["http://localhost:4200"],
-    
-}
+cors: {
+    origin: "http://localhost:4200",
+    allowedHeaders: ["my-custom-header"],
+    credentials: true
+  }
 });
 
 io.on('connection', (socket) => {
