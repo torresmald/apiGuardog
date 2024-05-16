@@ -31,6 +31,7 @@ cors: {
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
+
 });
 
 io.on('connection', (socket) => {
