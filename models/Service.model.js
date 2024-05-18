@@ -10,7 +10,7 @@ const servicesSchema = new mongoose.Schema({
     petId: { type: String }, 
     hour: {type: String},
     link: {type: String},
-    desc: {type: String},
+    description: {type: String},
     trainer: { type: mongoose.Schema.Types.ObjectId, ref: 'Trainer' },
 },
     {
