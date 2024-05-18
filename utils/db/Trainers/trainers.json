@@ -1,18 +1,40 @@
 [
     {
+        "isAdmin": false,
+        "_id": "652f831f5c0254886d83ab08",
         "name": "Pepe",
-        "image": "",
+        "image": "https://cdn1.iconfinder.com/data/icons/avatar-2-2/512/Programmer-512.png",
         "experience": "1 year",
+        "password": "$2b$10$KqdMX3MKvsWH55JSnvlePeLzuKDM5Ag8rgEa4.qDmnr2Zq.pzqDOa",
         "email": "pepe@pepe.com",
-        "password": "12345678",
-        "phone": "666666666"
+        "phone": "666666666",
+        "location": {
+            "lat": 40.200999935919974,
+            "lng": -3.6892864938188925
+        },
+        "verified": true,
+        "__v": 0,
+        "createdAt": "2023-10-18T07:02:55.508Z",
+        "updatedAt": "2023-10-18T07:02:55.508Z",
+        "token": "1hsi80peej0piavs8uko"
     },
     {
-        "name": "Carmen",
-        "image": "",
+        "_id": "65429dc237075352e15d3408",
+        "name": "lola",
+        "image": "https://img.freepik.com/vector-premium/perfil-avatar-ilustraciones-vectoriales-sitio-web-redes-sociales-icono-perfil-usuario_495897-224.jpg",
+        "email": "lola@pepe.com",
         "experience": "4+ years",
-        "email": "carmen@carmen.com",
-        "password": "12345678",
-        "phone": "666666666"
+        "password": "$2b$10$KqdMX3MKvsWH55JSnvlePeLzuKDM5Ag8rgEa4.qDmnr2Zq.pzqDOa",
+        "phone": "6666666",
+        "location": {
+            "lat": 40.18740490125557,
+            "lng": -3.6759491679726586
+        },
+        "verified": true,
+        "isAdmin": false,
+        "createdAt": "2023-11-01T18:49:38.987Z",
+        "updatedAt": "2023-11-01T18:49:38.987Z",
+        "__v": 0,
+        "token": "1hsi80pefhtsbmqefi0o"
     }
 ]

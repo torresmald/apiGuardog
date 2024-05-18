@@ -21,6 +21,7 @@ const trainersSchema = new mongoose.Schema({
         type: String,
         default: () => uniqueId()
     },
+    location: {type: Object, required: true}
 },
 {
     timestamps: true
