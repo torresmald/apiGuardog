@@ -3,24 +3,29 @@ import Stripe from 'stripe';
 
 class TransactionService {
 
-    async createTransaction (token, amount, data){
+    async createTransaction(payment_method_token, data) {
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+        const {  description, totalAmount } = data
 
-        const chargeObject = await stripe.charges.create({
-            amount,
+        const chargeObject = await stripe.paymentIntents.create({
+            amount: totalAmount,
             currency: 'eur',
-            source: 'token',
-            capture: false,
-            description: data,
-            receipt_email: 'jonathan.torresmald@gmail.com'
+            description: description,
+            receipt_email: 'jonathan.torresmald@gmail.com',
+            payment_method_types: ['card'],
+            payment_method: payment_method_token,
         })
-        
 
-        console.log(token);
-        console.log(amount);
-        console.log(data);
-        console.log(chargeObject);
-        return chargeObject
+
+        const paymentIntent = await stripe.paymentIntents.confirm(
+            chargeObject.id,
+            {
+                payment_method: 'pm_card_visa',
+                return_url: 'http://localhost:4200',
+            }
+        );
+
+        return paymentIntent
     }
 }
 
