@@ -6,6 +6,7 @@ import petsRouter from "./routes/petsRoutes.routes.js";
 import servicesRouter from "./routes/servicesRoutes.routes.js";
 import trainersRouter from './routes/trainersRoutes.routes.js'
 import couponsRouter from "./routes/couponsRoutes.routes.js";
+import transactionsRouter from "./routes/transactionsRoutes.routes.js";
 import createError from "../utils/errors/createError.js";
 
 const apiRouter = express.Router()
@@ -16,6 +17,7 @@ apiRouter.use('/pets', petsRouter)
 apiRouter.use('/services', servicesRouter)
 apiRouter.use('/trainers', trainersRouter)
 apiRouter.use('/coupons', couponsRouter)
+apiRouter.use('/transactions', transactionsRouter)
 
 
 
