@@ -5,7 +5,7 @@ class TransactionService {
 
     async createTransaction(payment_method_token, data) {
         const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
-        const {  description, totalAmount } = data
+        const { description, totalAmount } = data
 
         const chargeObject = await stripe.paymentIntents.create({
             amount: totalAmount,
@@ -26,6 +26,9 @@ class TransactionService {
         );
 
         return paymentIntent
+    }
+    async createTransactionPaypal(data) {
+        console.log(data);
     }
 }
 
