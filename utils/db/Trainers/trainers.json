@@ -36,5 +36,62 @@
         "updatedAt": "2023-11-01T18:49:38.987Z",
         "__v": 0,
         "token": "1hsi80pefhtsbmqefi0o"
-    }
+    },
+    {
+        "isAdmin": false,
+        "_id": "652f831f5c0254886d83ab14",
+        "name": "Laura",
+        "image": "https://img.freepik.com/vector-premium/perfil-avatar-ilustraciones-vectoriales-sitio-web-redes-sociales-icono-perfil-usuario_495897-224.jpg",
+        "experience": "2 years",
+        "password": "$2b$10$Kqdjfl3MKvsWH50JSnvlePeLzuKDM5Ag8rgEa4.qDmnr2Zq.pzqDOa",
+        "email": "laura.entrenadora@email.com",
+        "phone": "678901234",
+        "location": {
+          "lat": 40.182099935919974,
+          "lng": -3.7112864938188925
+        },
+        "verified": true,
+        "__v": 0,
+        "createdAt": "2023-10-18T07:02:55.508Z",
+        "updatedAt": "2023-10-18T07:02:55.508Z",
+        "token": "nio2349876234nio9876"
+      },
+      {
+        "isAdmin": false,
+        "_id": "652f831f5c0254886d83ab13",
+        "name": "Juan",
+        "image": "https://cdn1.iconfinder.com/data/icons/avatar-2-2/512/Programmer-512.png",
+        "experience": "3 years",
+        "password": "$2b$10$Kqdjla3MKvsWH51JSnvlePeLzuKDM5Ag8rgEa4.qDmnr2Zq.pzqDOa",
+        "email": "juan.entrenador@email.com",
+        "phone": "634567890",
+        "location": {
+          "lat": 40.236099935919974,
+          "lng": -3.6542864938188925
+        },
+        "verified": true,
+        "__v": 0,
+        "createdAt": "2023-10-18T07:02:55.508Z",
+        "updatedAt": "2023-10-18T07:02:55.508Z",
+        "token": "89765423nio09875643"
+      },
+      {
+        "isAdmin": false,
+        "_id": "652f831f5c0254886d83ab12",
+        "name": "María",
+        "image": "https://img.freepik.com/vector-premium/perfil-avatar-ilustraciones-vectoriales-sitio-web-redes-sociales-icono-perfil-usuario_495897-224.jpg",
+        "experience": "1 year",
+        "password": "$2b$10$Kqdjfl3MKvsWH52JSnvlePeLzuKDM5Ag8rgEa4.qDmnr2Zq.pzqDOa",
+        "email": "maria.entrenador@email.com",
+        "phone": "612345678",
+        "location": {
+          "lat": 40.195099935919974,
+          "lng": -3.6952864938188925
+        },
+        "verified": true,
+        "__v": 0,
+        "createdAt": "2023-10-18T07:02:55.508Z",
+        "updatedAt": "2023-10-18T07:02:55.508Z",
+        "token": "o892nio348023nioajsnd"
+      }
 ]
