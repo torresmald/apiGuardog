@@ -89,7 +89,7 @@ class AppointmentsService {
         return total + servicePrice
       }
         , 0)
-      const znewAppointment = new Appointment({
+      const newAppointment = new Appointment({
         parent: data[0].parent,
         services: servicesData.map((serv) => (
           {
