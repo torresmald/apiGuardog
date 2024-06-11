@@ -97,6 +97,7 @@ class AppointmentsService {
             price: serv.price,
             type: serv.type,
             image: serv.image,
+            description: serv.description,
             pet: serv.pet,
             date: serv.date,
             hour: serv.hour,
@@ -114,7 +115,7 @@ class AppointmentsService {
       const uniqueID = uniqueId()
       const path = `../tmp/${uniqueID}.pdf`;
       const filename = `/${uniqueID}.pdf`;
-      const pdfPath = await createPDF(uniqueID);
+      const pdfPath = await createPDF(uniqueID, newAppointment);
       const servicesHtml = savedAppointment.services.map(service => `
           <div>
             <p>Nombre del servicio: ${service.name}</p>
@@ -138,9 +139,8 @@ class AppointmentsService {
           contentType: 'application/pdf'
         }],
       }
-      console.log(mailOptions);
       await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
-      await deletePDF(pdfPath);
+     // await deletePDF(pdfPath);
 
       return newAppointment;
     } catch (error) {
