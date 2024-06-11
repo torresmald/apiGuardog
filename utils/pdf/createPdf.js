@@ -11,7 +11,7 @@ export const createPDF = async (name, appointment) => {
     return new Promise((resolve, reject) => {
 
         const doc = new PDFDocument();
-        const outputPath = path.resolve(__dirname, `/var/task/tmp${name}.pdf`);
+        const outputPath = path.resolve(__dirname, `/var/task/tmp/${name}.pdf`);
 
         const stream = fs.createWriteStream(outputPath);
         doc.pipe(stream);
