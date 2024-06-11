@@ -6,8 +6,10 @@ const createTransaction = async (request, response, next) => {
         const amountEur = Math.floor(data.totalAmount * 100);
         const dataToStripe = {
             totalAmount: amountEur,
-            description: data.description
+            description: data.description,
+            email: data.customer
         }
+        console.log(data);
         const transaction = await transactionService.createTransaction(payment_method_token, dataToStripe)
         response.status(200).json(transaction)
     } catch (error) {
