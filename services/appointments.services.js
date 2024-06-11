@@ -89,7 +89,7 @@ class AppointmentsService {
         return total + servicePrice
       }
         , 0)
-      const newAppointment = new Appointment({
+      const znewAppointment = new Appointment({
         parent: data[0].parent,
         services: servicesData.map((serv) => (
           {
@@ -113,7 +113,7 @@ class AppointmentsService {
       const parent = await Parent.findById(savedAppointment.parent)
       const email = parent.email
       const uniqueID = uniqueId()
-      const path = `../tmp/${uniqueID}.pdf`;
+      const path = `/var/task/tmp/${uniqueID}.pdf`;
       const filename = `/${uniqueID}.pdf`;
       const pdfPath = await createPDF(uniqueID, newAppointment);
       const servicesHtml = savedAppointment.services.map(service => `
