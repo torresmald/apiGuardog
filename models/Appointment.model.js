@@ -8,6 +8,7 @@ const appointmentSchema = new mongoose.Schema({
             type: {type: String, required: true,  enum: ['paseo', 'cuidados', 'higiene', 'entrenamiento']},
             image: { type: String },
             pet: { type: mongoose.Schema.Types.ObjectId, ref: 'Pet' },
+            description: {type: String},
             petId: { type: String }, 
             date: {type: Date, required: true},
             hour: {type: String},

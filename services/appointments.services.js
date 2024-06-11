@@ -2,7 +2,8 @@ import Appointment from "../models/Appointment.model.js"
 import { parse, formatISO, startOfDay, endOfDay, isValid } from 'date-fns'
 import { sendGoogleEmail } from "../config/email/nodemailer.js";
 import Parent from "../models/Parent.model.js";
-
+import { createPDF, deletePDF } from "../utils/pdf/createPdf.js";
+import { uniqueId } from "../utils/validate/validate.js";
 class AppointmentsService {
 
   async getAppointments() {
@@ -29,15 +30,15 @@ class AppointmentsService {
   async getAppointmentsUser(user) {
     try {
       const allAppointmentsParent = await Appointment.find({ parent: user }).populate(['services', 'parent'])
-      const allAppointmentsTrainer = await Appointment.find({ 
+      const allAppointmentsTrainer = await Appointment.find({
         'services': {
           $elemMatch: {
             'trainer': user
           }
         }
-       })
-       .select('-totalPaidReal -totalPay -discounts') 
-       .populate(['services'])
+      })
+        .select('-totalPaidReal -totalPay -discounts')
+        .populate(['services'])
       return allAppointmentsParent.length > 0 ? allAppointmentsParent : allAppointmentsTrainer
     } catch (error) {
       throw new Error(error.message)
@@ -79,7 +80,9 @@ class AppointmentsService {
   }
 
   async registerAppointment(data) {
+
     try {
+
       const servicesData = data.map(serviceData => serviceData.services);
       const totalAmount = data.reduce((total, appointment) => {
         const servicePrice = appointment.services.price;
@@ -94,6 +97,7 @@ class AppointmentsService {
             price: serv.price,
             type: serv.type,
             image: serv.image,
+            description: serv.description,
             pet: serv.pet,
             date: serv.date,
             hour: serv.hour,
@@ -108,6 +112,10 @@ class AppointmentsService {
       const savedAppointment = await newAppointment.save();
       const parent = await Parent.findById(savedAppointment.parent)
       const email = parent.email
+      const uniqueID = uniqueId()
+      const path = `../tmp/${uniqueID}.pdf`;
+      const filename = `/${uniqueID}.pdf`;
+      const pdfPath = await createPDF(uniqueID, newAppointment);
       const servicesHtml = savedAppointment.services.map(service => `
           <div>
             <p>Nombre del servicio: ${service.name}</p>
@@ -123,9 +131,16 @@ class AppointmentsService {
         to: email,
         subject: 'Confirmacion de Cita',
         html: `<p>Hola ${parent.name}, aquí tienes los detalles de tu cita:</p>${servicesHtml}` +
-    '<p>Gracias por tu confianza</p>'
-    }
-    await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+          '<p>Gracias por tu confianza</p>',
+        attachments: [{
+          filename,
+          // path: path.join(__dirname, '../output/file-name.pdf'),
+          path,
+          contentType: 'application/pdf'
+        }],
+      }
+      await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+     // await deletePDF(pdfPath);
 
       return newAppointment;
     } catch (error) {
@@ -145,9 +160,9 @@ class AppointmentsService {
           to: email,
           subject: 'Cancelacion de Cita',
           html: `<p>Hola ${parent.name}, tu cita :</p>${appointment._id} ha sido cancelada correctamente` +
-      '<p>Gracias por tu aviso</p>'
-      }
-      await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
+            '<p>Gracias por tu aviso</p>'
+        }
+        await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
         return message
       }
     } catch (error) {
