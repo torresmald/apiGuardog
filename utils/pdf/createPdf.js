@@ -11,7 +11,7 @@ export const createPDF = async (name, appointment) => {
     return new Promise((resolve, reject) => {
 
         const doc = new PDFDocument();
-        const outputPath = path.resolve(__dirname, `../../tmp/${name}.pdf`);
+        const outputPath = path.resolve(__dirname, `/var/task/tmp${name}.pdf`);
 
         const stream = fs.createWriteStream(outputPath);
         doc.pipe(stream);
@@ -45,14 +45,6 @@ export const createPDF = async (name, appointment) => {
             .text('Unit Cost', unitCostX, tableTop)
             .text('Quantity', quantityX, tableTop)
             .text('Total', lineTotalX, tableTop);
-
-        // Datos ficticios de la tabla
-        // const items = [
-        //     { item: '1', description: 'Producto A', unitCost: '10.00', quantity: '2', lineTotal: '20.00' },
-        //     { item: '2', description: 'Producto B', unitCost: '15.00', quantity: '1', lineTotal: '15.00' },
-        //     { item: '3', description: 'Producto C', unitCost: '7.50', quantity: '3', lineTotal: '22.50' },
-        //     { item: '4', description: 'Producto D', unitCost: '12.00', quantity: '1', lineTotal: '12.00' }
-        // ];
 
         let yPosition = tableTop + 20;
 
