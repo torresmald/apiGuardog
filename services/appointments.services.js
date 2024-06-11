@@ -113,7 +113,7 @@ class AppointmentsService {
       const parent = await Parent.findById(savedAppointment.parent)
       const email = parent.email
       const uniqueID = uniqueId()
-      const path = `/var/task/tmp/${uniqueID}.pdf`;
+     // const path = `/var/task/tmp/${uniqueID}.pdf`;
       const filename = `/${uniqueID}.pdf`;
       const pdfPath = await createPDF(uniqueID, newAppointment);
       const servicesHtml = savedAppointment.services.map(service => `
@@ -132,12 +132,11 @@ class AppointmentsService {
         subject: 'Confirmacion de Cita',
         html: `<p>Hola ${parent.name}, aquí tienes los detalles de tu cita:</p>${servicesHtml}` +
           '<p>Gracias por tu confianza</p>',
-        attachments: [{
-          filename,
-          // path: path.join(__dirname, '../output/file-name.pdf'),
-          path,
-          contentType: 'application/pdf'
-        }],
+        // attachments: [{
+        //   filename,
+        //   path,
+        //   contentType: 'application/pdf'
+        // }],
       }
       await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
      // await deletePDF(pdfPath);
