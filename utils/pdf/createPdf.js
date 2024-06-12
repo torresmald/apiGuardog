@@ -49,11 +49,11 @@ export const createPDF = (name, appointment, filePath) => {
         let yPosition = tableTop + 20;
 
         appointment.services.forEach(item => {
-            doc.text(item.item, itemX, yPosition)
+            doc.text(item.name, itemX, yPosition)
                 .text(item.description, descriptionX, yPosition)
-                .text(item.unitCost, unitCostX, yPosition)
-                .text(item.quantity, quantityX, yPosition)
-                .text(item.lineTotal, lineTotalX, yPosition);
+                .text(item.price, unitCostX, yPosition)
+                .text(1, quantityX, yPosition)
+                .text(item.price, lineTotalX, yPosition);
             yPosition += 20; // Incrementar posición Y para la siguiente fila
         });
 
