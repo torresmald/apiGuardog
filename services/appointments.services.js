@@ -5,6 +5,9 @@ import Parent from "../models/Parent.model.js";
 import { createPDF, deletePDF } from "../utils/pdf/createPdf.js";
 import { uniqueId } from "../utils/validate/validate.js";
 import tmp from 'tmp';
+import fs from 'fs';
+import path from 'path';
+
 
 class AppointmentsService {
 
@@ -115,22 +118,16 @@ class AppointmentsService {
       const parent = await Parent.findById(savedAppointment.parent)
       const email = parent.email
       const uniqueID = uniqueId()
-     // const path = `/var/task/tmp/${uniqueID}.pdf`;
 
-     
-  // Crear un archivo temporal
-  const pdfPath = await new Promise((resolve, reject) => {
-    tmp.file({ postfix: '.pdf' }, (err, tempPath) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(tempPath);
+      // Usar process.cwd() para generar la ruta del archivo PDF
+      const pdfDir = path.resolve(process.cwd(), 'tmp');
+      if (!fs.existsSync(pdfDir)) {
+        fs.mkdirSync(pdfDir);
       }
-    });
-  });
+      const pdfPath = path.resolve(pdfDir, `${uniqueID}.pdf`);
 
-  // Crear el PDF en el archivo temporal
-  await createPDF(uniqueID, savedAppointment, pdfPath);
+      // Crear el PDF en la ruta especificada
+      await createPDF(uniqueID, savedAppointment, pdfPath);
 
       const servicesHtml = savedAppointment.services.map(service => `
           <div>
@@ -155,7 +152,7 @@ class AppointmentsService {
         }],
       }
       await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
-     // await deletePDF(pdfPath);
+      // await deletePDF(pdfPath);
 
       return newAppointment;
     } catch (error) {
