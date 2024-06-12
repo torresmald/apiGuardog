@@ -87,7 +87,16 @@ export const createPDF = (name, appointment, filePath) => {
 
         // Asegurarse de que el flujo se haya completado antes de resolver la promesa
         stream.on('finish', () => {
-            resolve(filePath);
+            // Verificar tamaño del archivo
+            fs.stat(filePath, (err, stats) => {
+                if (err) {
+                    reject(err);
+                } else if (stats.size > 0) {
+                    resolve(filePath);
+                } else {
+                    reject(new Error('El archivo PDF se generó pero está vacío'));
+                }
+            });
         });
 
         stream.on('error', (err) => {
