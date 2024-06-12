@@ -25,24 +25,23 @@ export const createPDF = (appointment, filePath) => {
 
         
         const textX = startX;
-        doc.fontSize(27).text('Factura Guardog', textX, startY + (imageWidth / 2) - 14); // Ajuste para centrar verticalmente el texto con la imagen
+        doc.fontSize(27).text('Factura Guardog', textX, startY + (imageWidth / 2) - 16); // Ajuste para centrar verticalmente el texto con la imagen
 
 
 
-        // const tableTop = startY + 50; // Posición Y inicial de la tabla
-        // const itemX = 20;
-        // const descriptionX = 50;
-        // const unitCostX = 150;
-        // const quantityX = 200;
-        // const lineTotalX = 250;
+        const tableTop = startY + 50; // Posición Y inicial de la tabla
+        const itemX = 20;
+        const descriptionX = 50;
+        const unitCostX = 150;
+        const quantityX = 200;
+        const lineTotalX = 250;
 
-        // // Encabezados de la tabla
-        // doc.fontSize(12)
-        //     .text('Item', itemX, tableTop)
-        //     .text('Description', descriptionX, tableTop)
-        //     .text('Unit Cost', unitCostX, tableTop)
-        //     .text('Quantity', quantityX, tableTop)
-        //     .text('Line Total', lineTotalX, tableTop);
+        doc.fontSize(12)
+            .text('Item', itemX, tableTop)
+            .text('Description', descriptionX, tableTop)
+            .text('Unit Cost', unitCostX, tableTop)
+            .text('Quantity', quantityX, tableTop)
+            .text('Line Total', lineTotalX, tableTop);
 
  
 
