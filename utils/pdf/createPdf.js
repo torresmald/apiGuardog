@@ -48,7 +48,7 @@ export const createPDF = (name, appointment, filePath) => {
 
         let yPosition = tableTop + 20;
 
-        appointment.forEach(item => {
+        appointment.services.forEach(item => {
             doc.text(item.item, itemX, yPosition)
                 .text(item.description, descriptionX, yPosition)
                 .text(item.unitCost, unitCostX, yPosition)
