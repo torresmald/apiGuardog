@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-export const createPDF = (name, appointment, filePath) => {
+export const createPDF = (appointment, filePath) => {
     return new Promise((resolve, reject) => {
         const doc = new PDFDocument();
         const stream = fs.createWriteStream(filePath);
@@ -25,7 +25,7 @@ export const createPDF = (name, appointment, filePath) => {
 
         
         const textX = startX;
-        doc.fontSize(27).text('Factura Guardog', textX, startY + (imageWidth / 2) - 10); // Ajuste para centrar verticalmente el texto con la imagen
+        doc.fontSize(27).text('Factura Guardog', textX, startY + (imageWidth / 2) - 14); // Ajuste para centrar verticalmente el texto con la imagen
 
 
 
