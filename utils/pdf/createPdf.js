@@ -34,14 +34,16 @@ export const createPDF = (appointment, filePath) => {
         const descriptionX = 60;
         const unitCostX = 200;
         const quantityX = 300;
+        const IVAX = 350;
         const lineTotalX = 400;
 
         doc.fontSize(12)
             .text('Item', itemX, tableTop)
             .text('Description', descriptionX, tableTop)
             .text('Unit Cost', unitCostX, tableTop)
+            .text('IVA', IVAX, tableTop)
             .text('Quantity', quantityX, tableTop)
-            .text('Line Total', lineTotalX, tableTop);
+            .text('Total', lineTotalX, tableTop);
 
  
 
@@ -56,6 +58,12 @@ export const createPDF = (appointment, filePath) => {
             yPosition += 40; // Incrementar posición Y para la siguiente fila
         });
 
+
+
+        doc.fontSize(12)
+        .text('Subtotal', quantityX, yPosition + 20)
+        .text('IVA', quantityX,  yPosition + 30)
+        .text('Total', quantityX,  yPosition + 40);
 
         doc.end();
 
