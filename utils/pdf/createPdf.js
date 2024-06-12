@@ -67,7 +67,7 @@ export const createPDF = (appointment, filePath) => {
 
 
         doc.fontSize(12)
-        .text(appointment.totalPaid, lineTotalX, yPosition + 20)
+        .text(appointment.totalPay, lineTotalX, yPosition + 20)
         .text('21%', lineTotalX,  yPosition + 30)
         .text(appointment.totalPaidReal, lineTotalX,  yPosition + 40);
 
