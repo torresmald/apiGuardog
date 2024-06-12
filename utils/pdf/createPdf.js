@@ -65,6 +65,13 @@ export const createPDF = (appointment, filePath) => {
         .text('IVA', quantityX,  yPosition + 30)
         .text('Total', quantityX,  yPosition + 40);
 
+
+        doc.fontSize(12)
+        .text(appointment.totalPaid, lineTotalX, yPosition + 20)
+        .text('21%', lineTotalX,  yPosition + 30)
+        .text(appointment.totalPaidReal, lineTotalX,  yPosition + 40);
+
+
         doc.end();
 
         stream.on('finish', () => {
