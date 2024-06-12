@@ -14,7 +14,7 @@ export const createPDF = (name, appointment, filePath) => {
         doc.pipe(stream);
 
         const startX = 100; // Posición X inicial para el texto
-        const startY = 100; // Posición Y inicial
+        const startY = 50; // Posición Y inicial
         const imageWidth = 100; // Ancho de la imagen
         const imageX = 400; // Posición X para la imagen
 
@@ -25,16 +25,16 @@ export const createPDF = (name, appointment, filePath) => {
 
         
         const textX = startX;
-        doc.fontSize(27).text('Factura Guardog', textX, startY + (imageWidth / 2) - 13.5); // Ajuste para centrar verticalmente el texto con la imagen
+        doc.fontSize(27).text('Factura Guardog', textX, startY + (imageWidth / 2) - 3); // Ajuste para centrar verticalmente el texto con la imagen
 
 
 
-        const tableTop = startY + 150; // Posición Y inicial de la tabla
-        const itemX = startX;
-        const descriptionX = startX + 150;
-        const unitCostX = startX + 300;
-        const quantityX = startX + 400;
-        const lineTotalX = startX + 500;
+        const tableTop = startY + 50; // Posición Y inicial de la tabla
+        const itemX = 20;
+        const descriptionX = 50;
+        const unitCostX = 150;
+        const quantityX = 200;
+        const lineTotalX = 250;
 
         // Encabezados de la tabla
         doc.fontSize(12)
