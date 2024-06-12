@@ -49,11 +49,13 @@ export const createPDF = (appointment, filePath) => {
 
         appointment.services.forEach(item => {
             doc.text(item.name, itemX, yPosition)
-                .text(item.description, descriptionX, yPosition)
+                .text(item.description, descriptionX, yPosition, {
+                    width: 100
+                })
                 .text(item.price, unitCostX, yPosition)
                 .text(1, quantityX, yPosition)
                 .text(item.price, lineTotalX, yPosition);
-            yPosition += 20; // Incrementar posición Y para la siguiente fila
+            yPosition += 40; // Incrementar posición Y para la siguiente fila
         });
 
 
