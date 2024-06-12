@@ -123,8 +123,7 @@ class AppointmentsService {
       const pdfPath = path.resolve('/tmp', `${uniqueID}.pdf`);
 
       // Crear el PDF en la ruta especificada
-      const file= await createPDF(uniqueID, savedAppointment, pdfPath);
-      console.log(file);
+       await createPDF(uniqueID, savedAppointment, pdfPath);
       const servicesHtml = savedAppointment.services.map(service => `
           <div>
             <p>Nombre del servicio: ${service.name}</p>
