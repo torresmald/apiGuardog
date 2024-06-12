@@ -4,6 +4,8 @@ import { sendGoogleEmail } from "../config/email/nodemailer.js";
 import Parent from "../models/Parent.model.js";
 import { createPDF, deletePDF } from "../utils/pdf/createPdf.js";
 import { uniqueId } from "../utils/validate/validate.js";
+import tmp from 'tmp';
+
 class AppointmentsService {
 
   async getAppointments() {
@@ -114,8 +116,24 @@ class AppointmentsService {
       const email = parent.email
       const uniqueID = uniqueId()
      // const path = `/var/task/tmp/${uniqueID}.pdf`;
+
+     
+    // Crear un archivo temporal
+    const pdfPath = await new Promise((resolve, reject) => {
+      tmp.file({ postfix: '.pdf' }, (err, tempPath) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(tempPath);
+        }
+      });
+    });
+
+
       const filename = `/${uniqueID}.pdf`;
-      const pdfPath = await createPDF(uniqueID, newAppointment);
+
+      await createPDF(uniqueID, savedAppointment, pdfPath);
+
       const servicesHtml = savedAppointment.services.map(service => `
           <div>
             <p>Nombre del servicio: ${service.name}</p>
@@ -132,11 +150,11 @@ class AppointmentsService {
         subject: 'Confirmacion de Cita',
         html: `<p>Hola ${parent.name}, aquí tienes los detalles de tu cita:</p>${servicesHtml}` +
           '<p>Gracias por tu confianza</p>',
-        // attachments: [{
-        //   filename,
-        //   path,
-        //   contentType: 'application/pdf'
-        // }],
+        attachments: [{
+          filename: `${uniqueID}.pdf`,
+          pdfPath,
+          contentType: 'application/pdf'
+        }],
       }
       await sendGoogleEmail(mailOptions).then(result => console.log(result)).catch(error => console.log(error))
      // await deletePDF(pdfPath);
