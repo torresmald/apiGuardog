@@ -119,12 +119,8 @@ class AppointmentsService {
       const email = parent.email
       const uniqueID = uniqueId()
 
-      // Usar process.cwd() para generar la ruta del archivo PDF
-      const pdfDir = path.resolve(process.cwd(), 'tmp');
-      if (!fs.existsSync(pdfDir)) {
-        fs.mkdirSync(pdfDir);
-      }
-      const pdfPath = path.resolve(pdfDir, `${uniqueID}.pdf`);
+
+      const pdfPath = path.resolve('/tmp', `${uniqueID}.pdf`);
 
       // Crear el PDF en la ruta especificada
       await createPDF(uniqueID, savedAppointment, pdfPath);
