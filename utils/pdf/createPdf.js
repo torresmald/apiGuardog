@@ -48,10 +48,8 @@ export const createPDF = (appointment, filePath) => {
         let yPosition = tableTop + 20;
 
         appointment.services.forEach(item => {
-            doc.text(item.name, itemX, yPosition)
-                .text(item.description, descriptionX, yPosition, {
-                    width: 100
-                })
+            doc.text(1, itemX, yPosition)
+                .text(item.name, descriptionX, yPosition)
                 .text(item.price, unitCostX, yPosition)
                 .text(1, quantityX, yPosition)
                 .text(item.price, lineTotalX, yPosition);
