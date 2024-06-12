@@ -118,21 +118,19 @@ class AppointmentsService {
      // const path = `/var/task/tmp/${uniqueID}.pdf`;
 
      
-    // Crear un archivo temporal
-    const pdfPath = await new Promise((resolve, reject) => {
-      tmp.file({ postfix: '.pdf' }, (err, tempPath) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(tempPath);
-        }
-      });
+  // Crear un archivo temporal
+  const pdfPath = await new Promise((resolve, reject) => {
+    tmp.file({ postfix: '.pdf' }, (err, tempPath) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(tempPath);
+      }
     });
+  });
 
-
-      const filename = `/${uniqueID}.pdf`;
-
-      await createPDF(uniqueID, savedAppointment, pdfPath);
+  // Crear el PDF en el archivo temporal
+  await createPDF(uniqueID, savedAppointment, pdfPath);
 
       const servicesHtml = savedAppointment.services.map(service => `
           <div>
