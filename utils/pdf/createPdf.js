@@ -29,12 +29,12 @@ export const createPDF = (appointment, filePath) => {
 
 
 
-        const tableTop = startY + 50; // Posición Y inicial de la tabla
-        const itemX = 20;
-        const descriptionX = 50;
-        const unitCostX = 150;
-        const quantityX = 200;
-        const lineTotalX = 250;
+        const tableTop = startY + 100; // Posición Y inicial de la tabla
+        const itemX = 30;
+        const descriptionX = 60;
+        const unitCostX = 200;
+        const quantityX = 300;
+        const lineTotalX = 400;
 
         doc.fontSize(12)
             .text('Item', itemX, tableTop)
@@ -45,16 +45,16 @@ export const createPDF = (appointment, filePath) => {
 
  
 
-        // let yPosition = tableTop + 20;
+        let yPosition = tableTop + 20;
 
-        // appointment.services.forEach(item => {
-        //     doc.text(item.name, itemX, yPosition)
-        //         .text(item.description, descriptionX, yPosition)
-        //         .text(item.price, unitCostX, yPosition)
-        //         .text(1, quantityX, yPosition)
-        //         .text(item.price, lineTotalX, yPosition);
-        //     yPosition += 20; // Incrementar posición Y para la siguiente fila
-        // });
+        appointment.services.forEach(item => {
+            doc.text(item.name, itemX, yPosition)
+                .text(item.description, descriptionX, yPosition)
+                .text(item.price, unitCostX, yPosition)
+                .text(1, quantityX, yPosition)
+                .text(item.price, lineTotalX, yPosition);
+            yPosition += 20; // Incrementar posición Y para la siguiente fila
+        });
 
 
         doc.end();
