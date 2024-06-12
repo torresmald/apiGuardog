@@ -1,6 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import PDFDocument from 'pdfkit';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export const createPDF = (name, appointment, filePath) => {
     return new Promise((resolve, reject) => {
